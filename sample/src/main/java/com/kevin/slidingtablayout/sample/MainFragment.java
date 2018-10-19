@@ -19,18 +19,10 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import com.kevin.delegationadapter.AdapterDelegate;
-import com.kevin.delegationadapter.DelegationAdapter;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * HomeFragment
@@ -43,7 +35,11 @@ import java.util.List;
  */
 public class MainFragment extends Fragment {
 
-    private RecyclerView recyclerView;
+    private String mTitle;
+
+    public void setTitle(String title) {
+        this.mTitle = title;
+    }
 
     @Nullable
     @Override
@@ -55,72 +51,7 @@ public class MainFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        recyclerView = view.findViewById(R.id.recycler_view);
-
-        // ① 设置 LayoutManager
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(layoutManager);
-        // ② 创建 DelegationAdapter 对象
-        DelegationAdapter delegationAdapter = new DelegationAdapter();
-        // ③ 向Adapter中注册委托Adapter
-        delegationAdapter.addDelegate(new CompanyAdapterDelegate());
-        // ④ 设置Adapter
-        recyclerView.setAdapter(delegationAdapter);
-
-        List<String> companies = new ArrayList<>();
-        companies.add("🇨🇳 Baidu");
-        companies.add("🇨🇳 Alibaba");
-        companies.add("🇨🇳 Tencent");
-        companies.add("🇺🇸 Google");
-        companies.add("🇺🇸 Facebook");
-        companies.add("🇺🇸 Microsoft");
-        companies.add("🇨🇳 Baidu");
-        companies.add("🇨🇳 Alibaba");
-        companies.add("🇨🇳 Tencent");
-        companies.add("🇺🇸 Google");
-        companies.add("🇺🇸 Facebook");
-        companies.add("🇺🇸 Microsoft");
-        companies.add("🇨🇳 Baidu");
-        companies.add("🇨🇳 Alibaba");
-        companies.add("🇨🇳 Tencent");
-        companies.add("🇺🇸 Google");
-        companies.add("🇺🇸 Facebook");
-        companies.add("🇺🇸 Microsoft");
-        companies.add("🇨🇳 Baidu");
-        companies.add("🇨🇳 Alibaba");
-        companies.add("🇨🇳 Tencent");
-        companies.add("🇺🇸 Google");
-        companies.add("🇺🇸 Facebook");
-        companies.add("🇺🇸 Microsoft");
-        companies.add("🇨🇳 Baidu");
-        companies.add("🇨🇳 Alibaba");
-        companies.add("🇨🇳 Tencent");
-        companies.add("🇺🇸 Google");
-        companies.add("🇺🇸 Facebook");
-        companies.add("🇺🇸 Microsoft");
-        // ⑤ 设置数据
-        delegationAdapter.setDataItems(companies);
-    }
-
-    public static class CompanyAdapterDelegate extends AdapterDelegate<String, CompanyAdapterDelegate.ViewHolder> {
-
-        public ViewHolder onCreateViewHolder(ViewGroup parent) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(android.R.layout.simple_list_item_1, parent, false);
-            ViewHolder holder = new ViewHolder(view);
-            return holder;
-        }
-
-        public void onBindViewHolder(final ViewHolder holder, final int position, final String item) {
-            holder.tvName.setText(item);
-        }
-
-        static class ViewHolder extends RecyclerView.ViewHolder {
-            public TextView tvName;
-
-            public ViewHolder(View itemView) {
-                super(itemView);
-                tvName = itemView.findViewById(android.R.id.text1);
-            }
-        }
+        TextView textView = view.findViewById(R.id.text_view);
+        textView.setText(mTitle);
     }
 }
