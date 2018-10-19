@@ -21,13 +21,130 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp" />
+
+    </android.support.v7.widget.Toolbar>
+
+    <com.kevin.slidingtablayout.SlidingTabLayout
+        android:id="@+id/tab_layout0"
+        android:layout_width="0dp"
+        android:layout_height="38dp"
+        app:indicator_width="32dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:tab_horizontal_average="false"
+        app:tab_text_bold="false"
+        app:tab_text_color_default="@android:color/holo_blue_dark"
+        app:tab_text_color_selected="@android:color/holo_red_dark"
+        app:tab_text_selected_bold="true"
+        app:tab_text_size_default="16sp"
+        app:tab_text_size_selected="18sp" />
+
+    <com.kevin.slidingtablayout.SlidingTabLayout
+        android:id="@+id/tab_layout1"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:background="@mipmap/tab_layout_bg"
+        app:divider_color="#7CCA61"
+        app:divider_enabled="true"
+        app:divider_padding="1dp"
+        app:divider_thickness="4dp"
+        app:indicator_color="#B2B2B2"
+        app:indicator_corner_radius="8dp"
+        app:indicator_enabled="true"
+        app:indicator_gravity="center"
+        app:indicator_thickness="30dp"
+        app:indicator_width="50dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tab_layout0"
+        app:tab_horizontal_average="false"
+        app:tab_horizontal_padding="8dp"
+        app:tab_text_bold="false"
+        app:tab_text_color_default="@android:color/holo_blue_dark"
+        app:tab_text_color_selected="@android:color/holo_red_dark"
+        app:tab_text_selected_bold="true"
+        app:tab_text_size_default="16sp"
+        app:tab_text_size_selected="22sp" />
+
+    <com.kevin.slidingtablayout.SlidingTabLayout
+        android:id="@+id/tab_layout2"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:background="#ACE3F7"
+        app:indicator_bottom_margin="3dp"
+        app:indicator_color="#FF902D"
+        app:indicator_enabled="true"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tab_layout1"
+        app:left_padding="20dp"
+        app:right_padding="20dp"
+        app:tab_horizontal_average="false"
+        app:tab_horizontal_padding="4dp"
+        app:tab_layout="@layout/home_table"
+        app:tab_text_color_default="@android:color/holo_blue_dark"
+        app:tab_text_color_selected="@android:color/holo_red_dark"
+        app:tab_text_show_scale_anim="true"
+        app:tab_text_size_default="16sp"
+        app:tab_text_size_selected="16sp" />
+
+    <com.kevin.slidingtablayout.SlidingTabLayout
+        android:id="@+id/tab_layout3"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        app:indicator_enabled="false"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tab_layout2"
+        app:tab_horizontal_padding="1dp"
+        app:tab_text_color_default="#66000000"
+        app:tab_text_color_selected="#FF00FF"
+        app:tab_text_size_default="18sp"
+        app:tab_text_size_selected="16sp" />
+
+    <com.kevin.slidingtablayout.SlidingTabLayout
+        android:id="@+id/tab_layout4"
+        android:layout_width="0dp"
+        android:layout_height="28dp"
+        app:indicator_creep="false"
+        app:indicator_width_ratio="0.5"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tab_layout3"
+        app:tab_text_color_default="@android:color/holo_blue_dark"
+        app:tab_text_color_selected="@android:color/holo_red_dark"
+        app:tab_text_selected_bold="true" />
+
+    <com.kevin.slidingtablayout.SlidingTabLayout
+        android:id="@+id/tab_layout5"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        app:layout_constraintTop_toBottomOf="@+id/tab_layout4" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/tab_layout5">
+
+    </android.support.v4.view.ViewPager>
 
 </android.support.constraint.ConstraintLayout>
