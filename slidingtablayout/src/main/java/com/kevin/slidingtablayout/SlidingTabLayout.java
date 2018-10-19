@@ -375,7 +375,7 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
         }
     }
 
-    public abstract class SlidingTabPageAdapter extends FragmentPagerAdapter {
+    public static abstract class SlidingTabPageAdapter extends FragmentPagerAdapter {
 
         public SlidingTabPageAdapter(FragmentManager fm) {
             super(fm);
