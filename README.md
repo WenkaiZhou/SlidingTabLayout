@@ -7,10 +7,6 @@
 <div>
   <table>
     <tr>
-      <th>拍照裁剪</th>
-      <th>选择图片裁剪</th>
-    </tr>
-    <tr>
       <td>
         <img src="https://raw.githubusercontent.com/xuehuayous/SlidingTabLayout/master/sample/art/sample1.gif" />
       </td>
