@@ -29,14 +29,14 @@ compile 'com.kevin:slidingtablayout:1.0.0'
 
 ### 在layout.xml 中配置
 
-在Layout文件添加`<com.kevin.loopview.BannerView`
+在Layout文件添加`<com.kevin.slidingtab.SlidingTabLayout`
 
 ```XML
-<com.kevin.slidingtablayout.SlidingTabLayout
+<com.kevin.slidingtab.SlidingTabLayout
     android:id="@+id/sliding_tab"
     android:layout_width="match_parent"
     android:layout_height="44dp">
-</com.kevin.slidingtablayout.SlidingTabLayout>
+</com.kevin.slidingtab.SlidingTabLayout>
 ```
 ### 在代码中配置
 

@@ -50,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
     private SlidingTabLayout mTabLayout4;
     private SlidingTabLayout mTabLayout5;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
