@@ -24,6 +24,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.jaeger.library.StatusBarUtil;
 import com.kevin.slidingtab.SlidingTabLayout;
@@ -63,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
         mTabLayout4 = findViewById(R.id.tab_layout4);
         mTabLayout5 = findViewById(R.id.tab_layout5);
 
+        initTabListener();
+
         Adapter adapter = new Adapter(getSupportFragmentManager(), this);
         mViewPager.setAdapter(adapter);
         mViewPager.setOffscreenPageLimit(4);
@@ -90,6 +93,32 @@ public class MainActivity extends AppCompatActivity {
                 Color.parseColor("#8119EA"),
                 Color.parseColor("#CA7D00")
         );
+
+        // TODO 设置选中下标
+        // TODO 第一次选中回调
+    }
+
+    private void initTabListener() {
+        mTabLayout4.setOnTabClickListener(new SlidingTabLayout.OnTabClickListener() {
+            @Override
+            public void onClick(int position) {
+                Toast.makeText(MainActivity.this, "点击了条目：" + position, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        mTabLayout4.setOnSelectedTabClickListener(new SlidingTabLayout.OnSelectedTabClickListener() {
+            @Override
+            public void onClick(int position) {
+                Toast.makeText(MainActivity.this, "点击了选择的条目：" + position, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        mTabLayout4.setOnTabSelectedListener(new SlidingTabLayout.OnTabSelectedListener() {
+            @Override
+            public void onSelected(int position) {
+                Toast.makeText(MainActivity.this, "选中了条目：" + position, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     static class Adapter extends SlidingTabLayout.SlidingTabPageAdapter {

@@ -20,6 +20,7 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -70,7 +71,9 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
     private SlidingTabStrip mSlidingTabStrip;
 
     private OnTabCreateListener mOnTabCreateListener;
-    private OnTabClickAgainListener mOnTabClickAgainListener;
+    private OnTabClickListener mOnTabClickListener;
+    private OnSelectedTabClickListener mOnSelectedTabClickListener;
+    private OnTabSelectedListener mOnTabSelectedListener;
 
     public SlidingTabLayout(Context context) {
         this(context, null);
@@ -180,12 +183,20 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
         super.onAttachedToWindow();
         if (mViewPager != null) {
             scrollToSelectedTab(mViewPager.getCurrentItem(), 0);
+
+            if (getOnTabSelectedListener() != null) {
+                getOnTabSelectedListener().onSelected(mViewPager.getCurrentItem());
+            }
         }
     }
 
     @Override
     public void onGlobalLayout() {
-        this.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            this.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+        } else {
+            this.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+        }
 
         int width = getWidth() / mViewPager.getAdapter().getCount();
         int height = LinearLayout.LayoutParams.WRAP_CONTENT;
@@ -230,16 +241,37 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
     }
 
     /**
+     * Register a callback to be invoked when selected tab item view is clicked.
+     *
+     * @param listener The callback that will run
+     */
+    public void setOnSelectedTabClickListener(@Nullable OnSelectedTabClickListener listener) {
+        this.mOnSelectedTabClickListener = listener;
+    }
+
+    public OnSelectedTabClickListener getOnSelectedTabClickListener() {
+        return mOnSelectedTabClickListener;
+    }
+
+    /**
      * Register a callback to be invoked when tab item view is clicked.
      *
      * @param listener The callback that will run
      */
-    public void setOnTabClickAgainListener(@Nullable OnTabClickAgainListener listener) {
-        this.mOnTabClickAgainListener = listener;
+    public void setOnTabClickListener(@Nullable OnTabClickListener listener) {
+        this.mOnTabClickListener = listener;
     }
 
-    public OnTabClickAgainListener getOnTabClickAgainListener() {
-        return mOnTabClickAgainListener;
+    public OnTabClickListener getOnTabClickListener() {
+        return mOnTabClickListener;
+    }
+
+    public void setOnTabSelectedListener(@Nullable OnTabSelectedListener listener) {
+        this.mOnTabSelectedListener = listener;
+    }
+
+    public OnTabSelectedListener getOnTabSelectedListener() {
+        return mOnTabSelectedListener;
     }
 
     public void setOnColorChangedListener(OnColorChangeListener listener) {
@@ -324,6 +356,10 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
         public void onPageSelected(int position) {
             mTabLayout.getSlidingTabStrip().setTabSelected(true);
             mTabLayout.getSlidingTabStrip().setSelectedPosition(position);
+
+            if (mTabLayout.getOnTabSelectedListener() != null) {
+                mTabLayout.getOnTabSelectedListener().onSelected(position);
+            }
         }
     }
 
@@ -373,8 +409,12 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
                 if (view == mTabLayout.getSlidingTabStrip().getChildAt(i)) {
                     mTabLayout.getSlidingTabStrip().setTabSelected(true);
 
-                    if (mTabLayout.getViewPager().getCurrentItem() == i && mTabLayout.getOnTabClickAgainListener() != null) {
-                        mTabLayout.getOnTabClickAgainListener().onClick(i);
+                    if (mTabLayout.getOnTabClickListener() != null) {
+                        mTabLayout.getOnTabClickListener().onClick(i);
+                    }
+
+                    if (mTabLayout.getViewPager().getCurrentItem() == i && mTabLayout.getOnSelectedTabClickListener() != null) {
+                        mTabLayout.getOnSelectedTabClickListener().onClick(i);
                     }
 
                     mTabLayout.getViewPager().setCurrentItem(i, mSmoothScroll);
@@ -390,12 +430,31 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
             super(fm);
         }
 
+        /**
+         * Returns the specified position icon.
+         *
+         * @param position
+         * @return
+         */
         public abstract Drawable getDrawable(int position);
     }
 
     public interface TabPalette {
+
+        /**
+         * Return the specified position text color.
+         *
+         * @param position
+         * @return
+         */
         int getTextColor(int position);
 
+        /**
+         * Return the specified position divider color.
+         *
+         * @param position
+         * @return
+         */
         int getDividerColor(int position);
     }
 
@@ -411,10 +470,51 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
     }
 
     public interface OnColorChangeListener {
+
+        /**
+         * Callback when the color changes.
+         *
+         * @param color
+         */
         void onColorChanged(@ColorInt int color);
     }
 
-    public interface OnTabClickAgainListener {
+    /**
+     * Interface definition for a callback to be invoked when a tab view is clicked.
+     */
+    public interface OnTabClickListener {
+
+        /**
+         * Called when a view has been clicked.
+         *
+         * @param position The position of the view that was clicked.
+         */
         void onClick(int position);
+    }
+
+    /**
+     * Interface definition for a callback to be invoked when a selected tab view is clicked.
+     */
+    public interface OnSelectedTabClickListener {
+
+        /**
+         * Called when a view has been clicked.
+         *
+         * @param position The position of the view that was clicked.
+         */
+        void onClick(int position);
+    }
+
+    /**
+     * Interface definition for a callback to be invoked when a selected tab view is clicked.
+     */
+    public interface OnTabSelectedListener {
+
+        /**
+         * This method will be invoked when a new tab becomes selected.
+         *
+         * @param position Position index of the new selected tab.
+         */
+        void onSelected(int position);
     }
 }
