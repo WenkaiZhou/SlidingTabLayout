@@ -19,50 +19,50 @@
     <declare-styleable name="SlidingTabLayout">
 
         <!--the widget left and right padding-->
-        <attr name="stl_left_padding" format="reference|dimension" />
-        <attr name="stl_right_padding" format="reference|dimension" />
+        <attr name="stl_leftPadding" format="reference|dimension" />
+        <attr name="stl_rightPadding" format="reference|dimension" />
 
         <!--whether smooth scroll when tab click-->
-        <attr name="stl_smooth_scroll" format="boolean" />
+        <attr name="stl_smoothScroll" format="boolean" />
 
         <!--the layout of each tab-->
-        <attr name="stl_tab_layout" format="reference" />
+        <attr name="stl_tabLayout" format="reference" />
 
-        <attr name="stl_tab_horizontal_average" format="boolean" />
-        <attr name="stl_tab_horizontal_padding" format="reference|dimension" />
-        <attr name="stl_tab_vertical_gravity" format="enum">
+        <attr name="stl_tabHorizontalAverage" format="boolean" />
+        <attr name="stl_tabHorizontalPadding" format="reference|dimension" />
+        <attr name="stl_tabVerticalGravity" format="enum">
             <enum name="center" value="16" />
             <enum name="top" value="48" />
             <enum name="bottom" value="80" />
         </attr>
 
-        <attr name="stl_tab_text_size_default" format="reference|dimension" />
-        <attr name="stl_tab_text_size_selected" format="reference|dimension" />
-        <attr name="stl_tab_text_color_default" format="reference|color" />
-        <attr name="stl_tab_text_color_selected" format="reference|color" />
-        <attr name="stl_tab_text_bold" format="boolean" />
-        <attr name="stl_tab_text_selected_bold" format="boolean" />
-        <attr name="stl_tab_text_show_scale_anim" format="boolean" />
+        <attr name="stl_tabTextSizeDefault" format="reference|dimension" />
+        <attr name="stl_tabTextSizeSelected" format="reference|dimension" />
+        <attr name="stl_tabTextColorDefault" format="reference|color" />
+        <attr name="stl_tabTextColorSelected" format="reference|color" />
+        <attr name="stl_tabTextBold" format="boolean" />
+        <attr name="stl_tabTextSelectedBold" format="boolean" />
+        <attr name="stl_tabTextShowScaleAnim" format="boolean" />
 
-        <attr name="stl_indicator_enabled" format="boolean" />
-        <attr name="stl_indicator_creep" format="boolean" />
-        <attr name="stl_indicator_color" format="reference|color" />
-        <attr name="stl_indicator_thickness" format="reference|dimension" />
-        <attr name="stl_indicator_width" format="reference|dimension" />
-        <attr name="stl_indicator_width_ratio" format="float" />
-        <attr name="stl_indicator_corner_radius" format="reference|dimension" />
-        <attr name="stl_indicator_top_margin" format="reference|dimension" />
-        <attr name="stl_indicator_bottom_margin" format="reference|dimension" />
-        <attr name="stl_indicator_gravity" format="enum">
+        <attr name="stl_indicatorEnabled" format="boolean" />
+        <attr name="stl_indicatorCreep" format="boolean" />
+        <attr name="stl_indicatorColor" format="reference|color" />
+        <attr name="stl_indicatorThickness" format="reference|dimension" />
+        <attr name="stl_indicatorWidth" format="reference|dimension" />
+        <attr name="stl_indicatorWidthRatio" format="float" />
+        <attr name="stl_indicatorCornerRadius" format="reference|dimension" />
+        <attr name="stl_indicatorTopMargin" format="reference|dimension" />
+        <attr name="stl_indicatorBottomMargin" format="reference|dimension" />
+        <attr name="stl_indicatorGravity" format="enum">
             <enum name="center" value="17" />
             <enum name="top" value="48" />
             <enum name="bottom" value="80" />
         </attr>
 
-        <attr name="stl_divider_enabled" format="boolean" />
-        <attr name="stl_divider_color" format="reference|color" />
-        <attr name="stl_divider_thickness" format="reference|dimension" />
-        <attr name="stl_divider_padding" format="reference|dimension" />
+        <attr name="stl_dividerEnabled" format="boolean" />
+        <attr name="stl_dividerColor" format="reference|color" />
+        <attr name="stl_dividerThickness" format="reference|dimension" />
+        <attr name="stl_dividerPadding" format="reference|dimension" />
 
     </declare-styleable>
 

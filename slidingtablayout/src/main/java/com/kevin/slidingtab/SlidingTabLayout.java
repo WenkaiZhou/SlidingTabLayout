@@ -86,19 +86,19 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
         this.setFillViewport(true);
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SlidingTabLayout);
-        this.mLeftPadding = a.getDimension(R.styleable.SlidingTabLayout_stl_left_padding, 0);
-        this.mRightPadding = a.getDimension(R.styleable.SlidingTabLayout_stl_right_padding, 0);
-        this.mSmoothScroll = a.getBoolean(R.styleable.SlidingTabLayout_stl_smooth_scroll, true);
-        this.mTabLayoutRes = a.getResourceId(R.styleable.SlidingTabLayout_stl_tab_layout, 0);
-        this.mSmoothScroll = a.getBoolean(R.styleable.SlidingTabLayout_stl_tab_horizontal_average, true);
-        this.mIsTabHorizontalAverage = a.getBoolean(R.styleable.SlidingTabLayout_stl_tab_horizontal_average, false);
-        this.mTabHorizontalPadding = a.getDimension(R.styleable.SlidingTabLayout_stl_tab_horizontal_padding, Util.dp2px(context, 8));
-        this.mTabVerticalGravity = a.getInt(R.styleable.SlidingTabLayout_stl_tab_vertical_gravity, Gravity.CENTER_VERTICAL);
-        this.mDefaultTabTextSize = a.getDimensionPixelSize(R.styleable.SlidingTabLayout_stl_tab_text_size_default, Util.sp2px(context, 16));
-        this.mSelectedTabTextSize = a.getDimensionPixelSize(R.styleable.SlidingTabLayout_stl_tab_text_size_selected, mDefaultTabTextSize);
-        this.mDefaultTabTextColor = a.getColor(R.styleable.SlidingTabLayout_stl_tab_text_color_default, Color.GRAY);
-        this.mSelectedTabTextColor = a.getColor(R.styleable.SlidingTabLayout_stl_tab_text_color_selected, Color.DKGRAY);
-        this.mIsTabTextBold = a.getBoolean(R.styleable.SlidingTabLayout_stl_tab_text_bold, false);
+        this.mLeftPadding = a.getDimension(R.styleable.SlidingTabLayout_stl_leftPadding, 0);
+        this.mRightPadding = a.getDimension(R.styleable.SlidingTabLayout_stl_rightPadding, 0);
+        this.mSmoothScroll = a.getBoolean(R.styleable.SlidingTabLayout_stl_smoothScroll, true);
+        this.mTabLayoutRes = a.getResourceId(R.styleable.SlidingTabLayout_stl_tabLayout, 0);
+        this.mSmoothScroll = a.getBoolean(R.styleable.SlidingTabLayout_stl_smoothScroll, true);
+        this.mIsTabHorizontalAverage = a.getBoolean(R.styleable.SlidingTabLayout_stl_tabHorizontalAverage, false);
+        this.mTabHorizontalPadding = a.getDimension(R.styleable.SlidingTabLayout_stl_tabHorizontalPadding, Util.dp2px(context, 8));
+        this.mTabVerticalGravity = a.getInt(R.styleable.SlidingTabLayout_stl_tabVerticalGravity, Gravity.CENTER_VERTICAL);
+        this.mDefaultTabTextSize = a.getDimensionPixelSize(R.styleable.SlidingTabLayout_stl_tabTextSizeDefault, Util.sp2px(context, 16));
+        this.mSelectedTabTextSize = a.getDimensionPixelSize(R.styleable.SlidingTabLayout_stl_tabTextSizeSelected, mDefaultTabTextSize);
+        this.mDefaultTabTextColor = a.getColor(R.styleable.SlidingTabLayout_stl_tabTextColorDefault, Color.GRAY);
+        this.mSelectedTabTextColor = a.getColor(R.styleable.SlidingTabLayout_stl_tabTextColorSelected, Color.DKGRAY);
+        this.mIsTabTextBold = a.getBoolean(R.styleable.SlidingTabLayout_stl_tabTextBold, false);
         a.recycle();
 
         this.mSlidingTabStrip = new SlidingTabStrip(context, attrs);
