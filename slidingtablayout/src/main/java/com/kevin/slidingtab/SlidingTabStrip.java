@@ -438,6 +438,9 @@ final class SlidingTabStrip extends LinearLayout {
                 case Gravity.BOTTOM:
                     mIndicatorRectF.set(indicatorRectFLeft, getHeight() - mIndicatorThickness - mIndicatorBottomMargin, indicatorRectFRight, getHeight() - mIndicatorBottomMargin);
                     break;
+                default:
+                    // Can`t reach;
+                    break;
             }
 
             canvas.drawRoundRect(mIndicatorRectF, mIndicatorCornerRadius, mIndicatorCornerRadius, mIndicatorPaint);

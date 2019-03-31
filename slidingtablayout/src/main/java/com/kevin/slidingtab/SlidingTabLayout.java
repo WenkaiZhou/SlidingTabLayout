@@ -47,9 +47,9 @@ import com.kevin.slidingtablayout.R;
  * SlidingTabLayout
  *
  * @author zwenkai@foxmail.com, Created on 2018-09-29 14:24:57
- * Major Function：<b>SlidingTabLayout</b>
- * <p/>
- * Note: If you modify this class please fill in the following content as a record.
+ *          Major Function：<b>SlidingTabLayout</b>
+ *          <p/>
+ *          Note: If you modify this class please fill in the following content as a record.
  * @author mender，Modified Date Modify Content:
  */
 public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeObserver.OnGlobalLayoutListener {
