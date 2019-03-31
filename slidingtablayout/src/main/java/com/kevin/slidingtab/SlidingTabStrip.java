@@ -33,8 +33,6 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.kevin.slidingtablayout.R;
-
 /**
  * SlidingTabStrip
  *
