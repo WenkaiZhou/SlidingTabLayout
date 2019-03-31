@@ -41,7 +41,7 @@ compile 'com.kevin:slidingtablayout:1.0.0'
 ### 在代码中配置
 
 ```
-TabLayout tabLayout = findViewById(R.id.sliding_tab);
+SlidingTabLayout tabLayout = findViewById(R.id.sliding_tab);
 ViewPager viewPager = findViewById(R.id.view_pager);
 tabLayout.setViewPager(viewPager);
 ```
