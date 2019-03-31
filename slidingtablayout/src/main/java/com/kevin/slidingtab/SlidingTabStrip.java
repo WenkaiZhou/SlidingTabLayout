@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.kevin.slidingtablayout;
+package com.kevin.slidingtab;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -32,6 +32,8 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.kevin.slidingtablayout.R;
 
 /**
  * SlidingTabStrip
@@ -94,23 +96,23 @@ final class SlidingTabStrip extends LinearLayout {
         this.mRightInterpolator = new DecelerateInterpolator();
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SlidingTabLayout);
-        this.mIndicatorEnabled = a.getBoolean(R.styleable.SlidingTabLayout_indicator_enabled, true);
-        this.mIndicatorCreep = a.getBoolean(R.styleable.SlidingTabLayout_indicator_creep, true);
-        this.mIndicatorThickness = a.getDimension(R.styleable.SlidingTabLayout_indicator_thickness, Util.dp2px(context, 4));
-        this.mIndicatorWidth = a.getDimension(R.styleable.SlidingTabLayout_indicator_width, 0);
-        this.mIndicatorWidthRatio = a.getFloat(R.styleable.SlidingTabLayout_indicator_width_ratio, 1.0f);
-        this.mIndicatorColor = a.getColor(R.styleable.SlidingTabLayout_indicator_color, Color.TRANSPARENT);
-        this.mIndicatorCornerRadius = a.getDimension(R.styleable.SlidingTabLayout_indicator_corner_radius, mIndicatorThickness / 2);
-        this.mIndicatorTopMargin = a.getDimension(R.styleable.SlidingTabLayout_indicator_top_margin, 0f);
-        this.mIndicatorBottomMargin = a.getDimension(R.styleable.SlidingTabLayout_indicator_bottom_margin, 0f);
-        this.mIndicatorGravity = a.getInt(R.styleable.SlidingTabLayout_indicator_gravity, Gravity.BOTTOM);
-        this.mIsTabTextSelectedBold = a.getBoolean(R.styleable.SlidingTabLayout_tab_text_selected_bold, false);
-        this.mIsTabTextBold = a.getBoolean(R.styleable.SlidingTabLayout_tab_text_bold, false);
-        this.mDividerEnabled = a.getBoolean(R.styleable.SlidingTabLayout_divider_enabled, false);
-        float dividerThickness = a.getDimension(R.styleable.SlidingTabLayout_divider_thickness, Util.dp2px(context, 1));
-        mDividerPadding = a.getDimension(R.styleable.SlidingTabLayout_divider_padding, 0f);
-        int dividerColor = a.getColor(R.styleable.SlidingTabLayout_divider_color, getAlphaColor(Color.BLACK, ((byte) 32)));
-        this.mShowTabTextScaleAnim = a.getBoolean(R.styleable.SlidingTabLayout_tab_text_show_scale_anim, true);
+        this.mIndicatorEnabled = a.getBoolean(R.styleable.SlidingTabLayout_stl_indicator_enabled, true);
+        this.mIndicatorCreep = a.getBoolean(R.styleable.SlidingTabLayout_stl_indicator_creep, true);
+        this.mIndicatorThickness = a.getDimension(R.styleable.SlidingTabLayout_stl_indicator_thickness, Util.dp2px(context, 4));
+        this.mIndicatorWidth = a.getDimension(R.styleable.SlidingTabLayout_stl_indicator_width, 0);
+        this.mIndicatorWidthRatio = a.getFloat(R.styleable.SlidingTabLayout_stl_indicator_width_ratio, 1.0f);
+        this.mIndicatorColor = a.getColor(R.styleable.SlidingTabLayout_stl_indicator_color, Color.TRANSPARENT);
+        this.mIndicatorCornerRadius = a.getDimension(R.styleable.SlidingTabLayout_stl_indicator_corner_radius, mIndicatorThickness / 2);
+        this.mIndicatorTopMargin = a.getDimension(R.styleable.SlidingTabLayout_stl_indicator_top_margin, 0f);
+        this.mIndicatorBottomMargin = a.getDimension(R.styleable.SlidingTabLayout_stl_indicator_bottom_margin, 0f);
+        this.mIndicatorGravity = a.getInt(R.styleable.SlidingTabLayout_stl_indicator_gravity, Gravity.BOTTOM);
+        this.mIsTabTextSelectedBold = a.getBoolean(R.styleable.SlidingTabLayout_stl_tab_text_selected_bold, false);
+        this.mIsTabTextBold = a.getBoolean(R.styleable.SlidingTabLayout_stl_tab_text_bold, false);
+        this.mDividerEnabled = a.getBoolean(R.styleable.SlidingTabLayout_stl_divider_enabled, false);
+        float dividerThickness = a.getDimension(R.styleable.SlidingTabLayout_stl_divider_thickness, Util.dp2px(context, 1));
+        mDividerPadding = a.getDimension(R.styleable.SlidingTabLayout_stl_divider_padding, 0f);
+        int dividerColor = a.getColor(R.styleable.SlidingTabLayout_stl_divider_color, getAlphaColor(Color.BLACK, ((byte) 32)));
+        this.mShowTabTextScaleAnim = a.getBoolean(R.styleable.SlidingTabLayout_stl_tab_text_show_scale_anim, true);
         a.recycle();
 
         this.mTabPalette = new SimpleTabPalette();
