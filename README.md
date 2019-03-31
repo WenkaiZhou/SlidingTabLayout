@@ -22,7 +22,7 @@
 如果您的项目使用 Gradle 构建, 只需要在您的`build.gradle`文件添加下面一行到 `dependencies` :
 
 ```
-compile 'com.kevin:slidingtablayout:1.0.0'
+compile 'com.kevin:slidingtablayout:1.1.0'
 ```
 
 ## 简单使用
