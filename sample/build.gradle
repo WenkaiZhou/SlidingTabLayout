@@ -48,7 +48,7 @@ dependencies {
     implementation project(':slidingtablayout')
 
     implementation 'com.jaeger.statusbarutil:library:1.5.1'
-    implementation 'com.kevin:delegationadapter:1.0.5'
-    implementation 'com.kevin:delegationadapter-extras:1.0.5'
+    implementation 'com.kevin:delegationadapter:1.1.7'
+    implementation 'com.kevin:delegationadapter-extras:1.1.7'
 
 }
