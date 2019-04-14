@@ -218,12 +218,12 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
         mSlidingTabStrip.setSelectedTabText(mSelectedTabTextSize, color);
     }
 
-    public void setDividerColors(@ColorInt int... colors) {
-        mSlidingTabStrip.setDividerColors(colors);
+    public void setSelectedTextColors(@ColorInt int... colors) {
+        mSlidingTabStrip.setSelectedTabText(((float) mSelectedTabTextSize), colors);
     }
 
-    public void setIndicatorColors(@ColorInt int... colors) {
-        mSlidingTabStrip.setSelectedTabText(((float) mSelectedTabTextSize), colors);
+    public void setDividerColors(@ColorInt int... colors) {
+        mSlidingTabStrip.setDividerColors(colors);
     }
 
     public void setCustomTabPalette(TabPalette tabPalette) {

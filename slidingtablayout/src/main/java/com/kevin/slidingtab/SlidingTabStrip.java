@@ -278,7 +278,7 @@ final class SlidingTabStrip extends LinearLayout {
         this.invalidate();
     }
 
-    void setDividerColors(int... colors) {
+    void setDividerColors(@ColorInt int... colors) {
         this.mCustomTabPalette = null;
         this.mTabPalette.setDividerColors(colors);
         this.invalidate();
@@ -459,8 +459,8 @@ final class SlidingTabStrip extends LinearLayout {
         }
 
         @Override
-        public final int getTextColor(int index) {
-            return mTextColors[index % mTextColors.length];
+        public final int getTextColor(int position) {
+            return mTextColors[position % mTextColors.length];
         }
 
         public void setDividerColors(@ColorInt int... colors) {
@@ -468,8 +468,8 @@ final class SlidingTabStrip extends LinearLayout {
         }
 
         @Override
-        public final int getDividerColor(int index) {
-            return mDividerColors[index % mDividerColors.length];
+        public final int getDividerColor(int position) {
+            return mDividerColors[position % mDividerColors.length];
         }
     }
 }
