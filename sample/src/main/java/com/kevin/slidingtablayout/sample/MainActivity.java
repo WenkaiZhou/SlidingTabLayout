@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         mTabLayout5.setViewPager(mViewPager);
 
         mTabLayout0.setDividerColors(Color.BLUE, Color.RED, Color.GREEN);
-        mTabLayout0.setIndicatorColors(Color.BLUE, Color.RED, Color.GREEN);
+        mTabLayout0.setSelectedTextColors(Color.BLUE, Color.RED, Color.GREEN);
         mTabLayout4.setOnColorChangedListener(new SlidingTabLayout.OnColorChangeListener() {
             @Override
             public void onColorChanged(int color) {
@@ -87,15 +87,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mTabLayout4.setIndicatorColors(
+        mTabLayout4.setSelectedTextColors(
                 Color.parseColor("#EC0000"),
                 Color.parseColor("#EC0000"),
                 Color.parseColor("#8119EA"),
                 Color.parseColor("#CA7D00")
         );
-
-        // TODO 设置选中下标
-        // TODO 第一次选中回调
     }
 
     private void initTabListener() {
