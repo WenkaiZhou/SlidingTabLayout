@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2018 Kevin zhou
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -31,6 +30,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".imooc.ImoocActivity" />
+        <activity android:name=".missfresh.MissFreshActivity" />
     </application>
 
 </manifest>
