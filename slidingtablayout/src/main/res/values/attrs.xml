@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2018 Kevin zhou
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -47,6 +46,7 @@
         <attr name="stl_indicatorEnabled" format="boolean" />
         <attr name="stl_indicatorCreep" format="boolean" />
         <attr name="stl_indicatorColor" format="reference|color" />
+        <attr name="stl_indicatorBackground" format="reference|color" />
         <attr name="stl_indicatorThickness" format="reference|dimension" />
         <attr name="stl_indicatorWidth" format="reference|dimension" />
         <attr name="stl_indicatorWidthRatio" format="float" />

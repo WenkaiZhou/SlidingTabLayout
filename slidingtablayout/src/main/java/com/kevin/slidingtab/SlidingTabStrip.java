@@ -23,6 +23,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorInt;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -70,6 +71,7 @@ final class SlidingTabStrip extends LinearLayout {
     private float mIndicatorWidth;
     private float mIndicatorWidthRatio;
     private int mIndicatorColor;
+    private Drawable mIndicatorDrawable;
     private float mIndicatorCornerRadius;
     private float mIndicatorTopMargin;
     private float mIndicatorBottomMargin;
@@ -100,6 +102,7 @@ final class SlidingTabStrip extends LinearLayout {
         this.mIndicatorWidth = a.getDimension(R.styleable.SlidingTabLayout_stl_indicatorWidth, 0);
         this.mIndicatorWidthRatio = a.getFloat(R.styleable.SlidingTabLayout_stl_indicatorWidthRatio, 1.0f);
         this.mIndicatorColor = a.getColor(R.styleable.SlidingTabLayout_stl_indicatorColor, Color.TRANSPARENT);
+        this.mIndicatorDrawable = a.getDrawable(R.styleable.SlidingTabLayout_stl_indicatorBackground);
         this.mIndicatorCornerRadius = a.getDimension(R.styleable.SlidingTabLayout_stl_indicatorCornerRadius, mIndicatorThickness / 2);
         this.mIndicatorTopMargin = a.getDimension(R.styleable.SlidingTabLayout_stl_indicatorTopMargin, 0f);
         this.mIndicatorBottomMargin = a.getDimension(R.styleable.SlidingTabLayout_stl_indicatorBottomMargin, 0f);
@@ -161,7 +164,7 @@ final class SlidingTabStrip extends LinearLayout {
         }
         final TextView text = getTextView(index);
         if (showAnim) {
-            final ValueAnimator animator = ValueAnimator.ofFloat(new float[]{text.getTextSize(), size});
+            final ValueAnimator animator = ValueAnimator.ofFloat(text.getTextSize(), size);
             animator.setDuration(300L);
             animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 public void onAnimationUpdate(ValueAnimator paramAnonymousValueAnimator) {
@@ -350,7 +353,7 @@ final class SlidingTabStrip extends LinearLayout {
             for (int i = 0; i < childCount - 1; i++) {
                 View childView = getChildAt(i);
                 mDividerPaint.setColor(tabPalette.getDividerColor(i));
-                canvas.drawLine(childView.getRight(), (getHeight() - dividerHeight) / 2, childView.getRight(), (getHeight() + dividerHeight) / 2, mDividerPaint);
+                canvas.drawLine(childView.getRight(), (float) (getHeight() - dividerHeight) / 2, childView.getRight(), (float) (getHeight() + dividerHeight) / 2, mDividerPaint);
             }
         }
 
@@ -441,7 +444,12 @@ final class SlidingTabStrip extends LinearLayout {
                     break;
             }
 
-            canvas.drawRoundRect(mIndicatorRectF, mIndicatorCornerRadius, mIndicatorCornerRadius, mIndicatorPaint);
+            if (mIndicatorDrawable != null) {
+                mIndicatorDrawable.setBounds((int) mIndicatorRectF.left, (int) mIndicatorRectF.top, (int) mIndicatorRectF.right, (int) mIndicatorRectF.bottom);
+                mIndicatorDrawable.draw(canvas);
+            } else {
+                canvas.drawRoundRect(mIndicatorRectF, mIndicatorCornerRadius, mIndicatorCornerRadius, mIndicatorPaint);
+            }
 
             if (mOnColorChangeListener != null) {
                 mOnColorChangeListener.onColorChanged(firstPageTextColor);
