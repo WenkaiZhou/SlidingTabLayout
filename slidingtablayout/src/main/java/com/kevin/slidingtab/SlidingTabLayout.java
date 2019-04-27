@@ -58,7 +58,6 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
     private boolean mIsTabTextBold;
     private boolean mIsTabHorizontalAverage;
     private float mTabHorizontalPadding;
-    private int mTabVerticalGravity;
     private int mDefaultTabTextColor;
     private int mSelectedTabTextColor;
     private int mDefaultTabTextSize;
@@ -94,7 +93,7 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
         this.mSmoothScroll = a.getBoolean(R.styleable.SlidingTabLayout_stl_smoothScroll, true);
         this.mIsTabHorizontalAverage = a.getBoolean(R.styleable.SlidingTabLayout_stl_tabHorizontalAverage, false);
         this.mTabHorizontalPadding = a.getDimension(R.styleable.SlidingTabLayout_stl_tabHorizontalPadding, Util.dp2px(context, 8));
-        this.mTabVerticalGravity = a.getInt(R.styleable.SlidingTabLayout_stl_tabVerticalGravity, Gravity.CENTER_VERTICAL);
+        int tabVerticalGravity = a.getInt(R.styleable.SlidingTabLayout_stl_tabVerticalGravity, Gravity.CENTER_VERTICAL);
         this.mDefaultTabTextSize = a.getDimensionPixelSize(R.styleable.SlidingTabLayout_stl_tabTextSizeDefault, Util.sp2px(context, 16));
         this.mSelectedTabTextSize = a.getDimensionPixelSize(R.styleable.SlidingTabLayout_stl_tabTextSizeSelected, mDefaultTabTextSize);
         this.mDefaultTabTextColor = a.getColor(R.styleable.SlidingTabLayout_stl_tabTextColorDefault, Color.GRAY);
@@ -103,7 +102,7 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
         a.recycle();
 
         this.mSlidingTabStrip = new SlidingTabStrip(context, attrs);
-        this.mSlidingTabStrip.setGravity(mTabVerticalGravity);
+        this.mSlidingTabStrip.setGravity(tabVerticalGravity);
         this.mSlidingTabStrip.setLeftPadding(mLeftPadding);
         this.mSlidingTabStrip.setRightPadding(mRightPadding);
         this.mSlidingTabStrip.setTabTextBold(mIsTabTextBold);
@@ -145,8 +144,8 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
 
             if (mTabLayoutRes != 0) {
                 view = LayoutInflater.from(this.getContext()).inflate(mTabLayoutRes, mSlidingTabStrip, false);
-                text = view.findViewById(R.id.tab_text_id);
-                image = view.findViewById(R.id.tab_img_id);
+                text = view.findViewById(R.id.sliding_tab_text);
+                image = view.findViewById(R.id.sliding_tab_image);
 
                 if (adapter instanceof SlidingTabPageAdapter && image != null) {
                     Drawable drawable = ((SlidingTabPageAdapter) adapter).getDrawable(i);
@@ -282,7 +281,7 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
         if (view instanceof TextView) {
             text = (TextView) view;
         } else {
-            text = view.findViewById(R.id.tab_text_id);
+            text = view.findViewById(R.id.sliding_tab_text);
         }
         text.setSingleLine(true);
         text.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
@@ -338,7 +337,7 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
         @Override
         public void onPageScrolled(int position, float positionOffset, @Px int positionOffsetPixels) {
             int childCount = mTabLayout.getSlidingTabStrip().getChildCount();
-            if (childCount != 0 && position >= 0 && position < childCount) {
+            if (position >= 0 && position < childCount) {
                 mTabLayout.getSlidingTabStrip().setFirstPagePosition(position, positionOffset);
                 mTabLayout.scrollToSelectedTab(position, positionOffset);
             }
@@ -382,11 +381,13 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
 
         float left = 0;
         float right = 0;
-        if (firstPagePosition < childCount - 1) { // Sliding the page.
+        if (firstPagePosition < childCount - 1) {
+            // Sliding the page.
             View secondPageTabView = mSlidingTabStrip.getChildAt(firstPagePosition + 1);
             left = firstPageTabView.getLeft() + positionOffset * (secondPageTabView.getLeft() - firstPageTabView.getLeft());
             right = firstPageTabView.getRight() + positionOffset * (secondPageTabView.getRight() - firstPageTabView.getRight());
-        } else if (firstPagePosition == childCount - 1) { // After selected the last page.
+        } else if (firstPagePosition == childCount - 1) {
+            // After selected the last page.
             left = firstPageTabView.getLeft();
             right = firstPageTabView.getRight();
         }

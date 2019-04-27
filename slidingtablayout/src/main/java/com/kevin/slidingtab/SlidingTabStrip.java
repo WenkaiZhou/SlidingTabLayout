@@ -293,7 +293,7 @@ final class SlidingTabStrip extends LinearLayout {
     private TextView getTextView(int index) {
         View text = getChildAt(index);
         if (!(text instanceof TextView)) {
-            text = text.findViewById(R.id.tab_text_id);
+            text = text.findViewById(R.id.sliding_tab_text);
         }
 
         return (TextView) text;
