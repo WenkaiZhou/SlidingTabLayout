@@ -67,6 +67,9 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
     private ViewPager mViewPager;
     private SlidingTabStrip mSlidingTabStrip;
 
+    private TabLayoutOnPageChangeListener mPageChangeListener;
+    private AdapterChangeListener mAdapterChangeListener;
+
     private OnTabCreateListener mOnTabCreateListener;
     private OnTabClickListener mOnTabClickListener;
     private OnSelectedTabClickListener mOnSelectedTabClickListener;
@@ -111,20 +114,38 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
         this.addView(mSlidingTabStrip, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
     }
 
-    public void setViewPager(@NonNull ViewPager viewPager) {
-        if (viewPager == null) {
-            throw new IllegalStateException("The viewPager is null!");
+    public void setupWithViewPager(@Nullable ViewPager viewPager) {
+        if (mViewPager != null) {
+            // If we've already been setup with a ViewPager, remove us from it
+            if (mPageChangeListener != null) {
+                mViewPager.removeOnPageChangeListener(mPageChangeListener);
+            }
+            if (mAdapterChangeListener != null) {
+                mViewPager.removeOnAdapterChangeListener(mAdapterChangeListener);
+            }
         }
 
-        this.mViewPager = viewPager;
-        if (mIsTabHorizontalAverage) {
-            getViewTreeObserver().addOnGlobalLayoutListener(this);
-        }
+        if (viewPager != null) {
+            mViewPager = viewPager;
 
-        mViewPager.addOnPageChangeListener(new InternalViewPagerListener(this));
-        initTabLayout();
-        if (mOnTabCreateListener != null) {
-            mOnTabCreateListener.onCreated();
+            // Add our custom OnPageChangeListener to the ViewPager
+            if (mPageChangeListener == null) {
+                mPageChangeListener = new TabLayoutOnPageChangeListener(this);
+            }
+            viewPager.addOnPageChangeListener(mPageChangeListener);
+
+            final PagerAdapter adapter = viewPager.getAdapter();
+            if (adapter != null) {
+                // Now we'll populate ourselves from the pager adapter, adding an observer if
+                // autoRefresh is enabled
+                setPagerAdapter(adapter);
+            }
+
+            // Add a listener so that we're notified of any adapter changes
+            if (mAdapterChangeListener == null) {
+                mAdapterChangeListener = new AdapterChangeListener();
+            }
+            viewPager.addOnAdapterChangeListener(mAdapterChangeListener);
         }
     }
 
@@ -132,9 +153,12 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
         return mViewPager;
     }
 
-    private void initTabLayout() {
+    private void setPagerAdapter(PagerAdapter adapter) {
+        if (mIsTabHorizontalAverage) {
+            getViewTreeObserver().addOnGlobalLayoutListener(this);
+        }
+
         mSlidingTabStrip.removeAllViews();
-        PagerAdapter adapter = mViewPager.getAdapter();
         TabClickListener listener = new TabClickListener(this);
 
         for (int i = 0; i < adapter.getCount(); i++) {
@@ -171,6 +195,10 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
             view.setOnClickListener(listener);
             setLayoutParams(view, i);
             mSlidingTabStrip.addView(view);
+        }
+
+        if (mOnTabCreateListener != null) {
+            mOnTabCreateListener.onCreated();
         }
 
     }
@@ -300,11 +328,11 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
         }
     }
 
-    static class InternalViewPagerListener implements ViewPager.OnPageChangeListener {
+    static class TabLayoutOnPageChangeListener implements ViewPager.OnPageChangeListener {
 
         private final SlidingTabLayout mTabLayout;
 
-        public InternalViewPagerListener(SlidingTabLayout tabLayout) {
+        public TabLayoutOnPageChangeListener(SlidingTabLayout tabLayout) {
             this.mTabLayout = tabLayout;
         }
 
@@ -356,6 +384,19 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
 
             if (mTabLayout.getOnTabSelectedListener() != null) {
                 mTabLayout.getOnTabSelectedListener().onSelected(position);
+            }
+        }
+    }
+
+    private class AdapterChangeListener implements ViewPager.OnAdapterChangeListener {
+
+        AdapterChangeListener() {
+        }
+
+        @Override
+        public void onAdapterChanged(@NonNull ViewPager viewPager, @Nullable PagerAdapter oldAdapter, @Nullable PagerAdapter newAdapter) {
+            if (mViewPager == viewPager) {
+                setPagerAdapter(newAdapter);
             }
         }
     }

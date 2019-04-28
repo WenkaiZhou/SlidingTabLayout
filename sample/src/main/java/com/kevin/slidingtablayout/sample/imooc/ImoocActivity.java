@@ -46,7 +46,7 @@ public class ImoocActivity extends AppCompatActivity {
         mViewPager.setAdapter(adapter);
         mViewPager.setOffscreenPageLimit(4);
 
-        mTabLayout.setViewPager(mViewPager);
+        mTabLayout.setupWithViewPager(mViewPager);
 
         mTabLayout.setOnColorChangedListener(new SlidingTabLayout.OnColorChangeListener() {
             @Override

@@ -41,7 +41,7 @@ public class MissFreshActivity extends AppCompatActivity {
         Adapter adapter = new Adapter(getSupportFragmentManager());
         mViewPager.setAdapter(adapter);
 
-        mTabLayout.setViewPager(mViewPager);
+        mTabLayout.setupWithViewPager(mViewPager);
     }
 
     private void initTabListener() {
