@@ -45,3 +45,68 @@ SlidingTabLayout tabLayout = findViewById(R.id.sliding_tab);
 ViewPager viewPager = findViewById(R.id.view_pager);
 tabLayout.setViewPager(viewPager);
 ```
+
+## 更多配置
+
+### Attributes
+
+在XML中使用SlidingTabLayout，可以有如下配置：
+
+名称 | 格式 |  说明
+-|-|-
+stl_leftPadding | dimension | 第一个Tab距离左边的距离 |
+stl_rightPadding | dimension | 最后一个Tab距离右边的距离 |
+stl_smoothScroll | boolean | Tab在点击时ViewPager是否平滑切换 |
+stl_tabLayout | reference | 自定义Tab布局 |
+stl_tabHorizontalAverage | boolean | Tab水平平分整体宽度 |
+stl_tabHorizontalPadding | dimension | Tab左右边距 |
+stl_tabVerticalGravity | enum | Tab垂直方向位置，为上、中、下 |
+stl_tabTextSizeDefault | dimension | Tab未选中文本大小 |
+stl_tabTextSizeSelected | dimension | Tab选中文本大小 |
+stl_tabTextColorDefault | color | Tab未选中文本颜色 |
+stl_tabTextColorSelected | color | Tab选中文本颜色 |
+stl_tabTextBold | boolean | Tab是否粗体 |
+stl_tabTextSelectedBold | boolean | Tab是否选中粗体 |
+stl_tabTextShowScaleAnim | boolean | Tab选中是否字体大小动画渐变 |
+stl_indicatorEnabled | boolean | Tab指示器是否开启 |
+stl_indicatorCreep | boolean | Tab指示器是否蠕动前行 |
+stl_indicatorColor | color | Tab指示器颜色 |
+stl_indicatorBackground | reference | Tab指示器背景 |
+stl_indicatorThickness | dimension | Tab指示器高度 |
+stl_indicatorWidth | dimension | Tab指示器宽度 |
+stl_indicatorWidthRatio | float | Tab指示器占Tab宽度比重 |
+stl_indicatorWidthRatio | float | Tab指示器占Tab宽度比重 |
+stl_indicatorCornerRadius | dimension | Tab指示器圆角半径 |
+stl_indicatorTopMargin | dimension | Tab指示器距离顶部高度 |
+stl_indicatorBottomMargin | dimension | Tab指示器距离底部高度 |
+stl_indicatorGravity | dimension | Tab指示器垂直方向位置，为上、中、下 |
+stl_dividerEnabled | boolean | Tab间分割线是否开启 |
+stl_dividerColor | color | Tab间分割线颜色 |
+stl_dividerThickness | dimension | Tab间分割线宽度 |
+stl_dividerPadding | dimension | Tab间分割线上下边距 |
+
+### 在代码中配置
+
+```java
+// 设置选中颜色，可以单独配置每个Tab对应颜色
+tabLayout.setSelectedTextColors(Color.parseColor("#EC0000"),Color.parseColor("#EC0000"));
+
+// 设置Tab选中的监听
+tabLayout.setOnTabSelectedListener(new SlidingTabLayout.OnTabSelectedListener() {
+    @Override
+    public void onSelected(int position) {
+    }
+});
+// 设置Tab点击的监听
+tabLayout.setOnTabClickListener(new SlidingTabLayout.OnTabClickListener() {
+    @Override
+    public void onClick(int position) {
+    }
+});
+// 设置已选中的Tab点击的监听
+tabLayout.setOnSelectedTabClickListener(new SlidingTabLayout.OnSelectedTabClickListener() {
+    @Override
+    public void onClick(int position) {
+    }
+});
+```
