@@ -61,9 +61,9 @@ stl_tabLayout | reference | 自定义Tab布局 |
 stl_tabHorizontalAverage | boolean | Tab水平平分整体宽度 |
 stl_tabHorizontalPadding | dimension | Tab左右边距 |
 stl_tabVerticalGravity | enum | Tab垂直方向位置，为上、中、下 |
-stl_tabTextSizeDefault | dimension | Tab未选中文本大小 |
+stl_tabTextSize | dimension | Tab未选中文本大小 |
 stl_tabTextSizeSelected | dimension | Tab选中文本大小 |
-stl_tabTextColorDefault | color | Tab未选中文本颜色 |
+stl_tabTextColor | color | Tab未选中文本颜色 |
 stl_tabTextColorSelected | color | Tab选中文本颜色 |
 stl_tabTextBold | boolean | Tab是否粗体 |
 stl_tabTextSelectedBold | boolean | Tab是否选中粗体 |

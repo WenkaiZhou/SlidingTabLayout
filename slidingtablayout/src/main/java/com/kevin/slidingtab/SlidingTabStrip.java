@@ -54,8 +54,8 @@ final class SlidingTabStrip extends LinearLayout {
 
     private int mFirstPagePosition;
     private float mFirstPagePositionOffset;
-    private int mDefaultTabTextColor;
-    private float mDefaultTabTextSize;
+    private int mTabTextColor;
+    private float mTabTextSize;
     private float mSelectedTabTextSize;
 
     private int mLastSelectedPosition;
@@ -89,7 +89,7 @@ final class SlidingTabStrip extends LinearLayout {
         super(context, attrs);
         this.setWillNotDraw(false);
 
-        this.mDefaultTabTextColor = Color.GRAY;
+        this.mTabTextColor = Color.GRAY;
         this.mLastSelectedPosition = -1;
         this.mSelectedPosition = 0;
         this.mLeftInterpolator = new AccelerateInterpolator();
@@ -211,13 +211,13 @@ final class SlidingTabStrip extends LinearLayout {
         return !mIsTabTextBold && mIsTabTextSelectedBold;
     }
 
-    void setDefaultTabText(float titleTextSize, @ColorInt int defaultTabTextColor) {
-        this.mDefaultTabTextSize = titleTextSize;
-        this.mDefaultTabTextColor = defaultTabTextColor;
+    void setTabText(float titleTextSize, @ColorInt int defaultTabTextColor) {
+        this.mTabTextSize = titleTextSize;
+        this.mTabTextColor = defaultTabTextColor;
         for (int i = 0; i < getChildCount(); i++) {
             if (i != mSelectedPosition) {
                 TextView text = getTextView(i);
-                text.setTextColor(mDefaultTabTextColor);
+                text.setTextColor(mTabTextColor);
                 text.setTextSize(TypedValue.COMPLEX_UNIT_PX, titleTextSize);
                 if (onlySelectedTabBold() && mLastSelectedPosition != -1) {
                     setTabTextTypeface(mLastSelectedPosition, Typeface.defaultFromStyle(Typeface.NORMAL));
@@ -236,7 +236,7 @@ final class SlidingTabStrip extends LinearLayout {
     void setSelectedTabText(float selectedTabTextSize, @ColorInt int... colors) {
         this.mSelectedTabTextSize = selectedTabTextSize;
         if (mShowTabTextScaleAnim) {
-            mShowTabTextScaleAnim = mSelectedTabTextSize != mDefaultTabTextSize;
+            mShowTabTextScaleAnim = mSelectedTabTextSize != mTabTextSize;
         }
 
         this.mCustomTabPalette = null;
@@ -318,9 +318,9 @@ final class SlidingTabStrip extends LinearLayout {
         if (mLastSelectedPosition != mSelectedPosition) {
 
             // Set the selected tab text size.
-            if (mDefaultTabTextSize != mSelectedTabTextSize) {
+            if (mTabTextSize != mSelectedTabTextSize) {
                 setTabTextSize(mSelectedPosition, mSelectedTabTextSize, mShowTabTextScaleAnim);
-                setTabTextSize(mLastSelectedPosition, mDefaultTabTextSize, mShowTabTextScaleAnim);
+                setTabTextSize(mLastSelectedPosition, mTabTextSize, mShowTabTextScaleAnim);
             }
 
             // Set the selected tab to bold.
@@ -331,7 +331,7 @@ final class SlidingTabStrip extends LinearLayout {
 
             if (mIsTabSelected) {
                 setTabTextColor(mSelectedPosition, tabPalette.getTextColor(mSelectedPosition));
-                setTabTextColor(mLastSelectedPosition, mDefaultTabTextColor);
+                setTabTextColor(mLastSelectedPosition, mTabTextColor);
             }
 
             mLastSelectedPosition = mSelectedPosition;
@@ -340,9 +340,9 @@ final class SlidingTabStrip extends LinearLayout {
         // Change the text color when slipping page.
         int secondPagePosition = mFirstPagePosition + 1;
         if (!mIsTabSelected) {
-            setTabTextColor(mFirstPagePosition, mixColor(mDefaultTabTextColor, tabPalette.getTextColor(mFirstPagePosition), mFirstPagePositionOffset));
+            setTabTextColor(mFirstPagePosition, mixColor(mTabTextColor, tabPalette.getTextColor(mFirstPagePosition), mFirstPagePositionOffset));
             if (mFirstPagePositionOffset > 0f && mFirstPagePosition < getChildCount() - 1) {
-                setTabTextColor(secondPagePosition, mixColor(tabPalette.getTextColor(secondPagePosition), mDefaultTabTextColor, mFirstPagePositionOffset));
+                setTabTextColor(secondPagePosition, mixColor(tabPalette.getTextColor(secondPagePosition), mTabTextColor, mFirstPagePositionOffset));
             }
         }
 

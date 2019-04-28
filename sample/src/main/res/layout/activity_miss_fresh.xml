@@ -32,9 +32,9 @@
         app:stl_indicatorHeight="2dp"
         app:stl_indicatorWidth="16dp"
         app:stl_tabTextBold="true"
-        app:stl_tabTextColorDefault="#827E80"
+        app:stl_tabTextColor="#827E80"
         app:stl_tabTextColorSelected="#443F42"
-        app:stl_tabTextSizeDefault="14sp"
+        app:stl_tabTextSize="14sp"
         app:stl_tabTextSizeSelected="20dp" />
 
     <android.support.v4.view.ViewPager

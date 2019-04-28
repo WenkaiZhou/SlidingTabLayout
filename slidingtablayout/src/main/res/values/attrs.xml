@@ -35,9 +35,9 @@
             <enum name="bottom" value="80" />
         </attr>
 
-        <attr name="stl_tabTextSizeDefault" format="reference|dimension" />
+        <attr name="stl_tabTextSize" format="reference|dimension" />
         <attr name="stl_tabTextSizeSelected" format="reference|dimension" />
-        <attr name="stl_tabTextColorDefault" format="reference|color" />
+        <attr name="stl_tabTextColor" format="reference|color" />
         <attr name="stl_tabTextColorSelected" format="reference|color" />
         <attr name="stl_tabTextBold" format="boolean" />
         <attr name="stl_tabTextSelectedBold" format="boolean" />
