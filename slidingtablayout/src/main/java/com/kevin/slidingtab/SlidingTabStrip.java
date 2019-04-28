@@ -110,7 +110,7 @@ final class SlidingTabStrip extends LinearLayout {
         this.mIsTabTextSelectedBold = a.getBoolean(R.styleable.SlidingTabLayout_stl_tabTextSelectedBold, false);
         this.mIsTabTextBold = a.getBoolean(R.styleable.SlidingTabLayout_stl_tabTextBold, false);
         this.mDividerEnabled = a.getBoolean(R.styleable.SlidingTabLayout_stl_dividerEnabled, false);
-        float dividerThickness = a.getDimension(R.styleable.SlidingTabLayout_stl_dividerThickness, Util.dp2px(context, 1));
+        float dividerWidth = a.getDimension(R.styleable.SlidingTabLayout_stl_dividerWidth, Util.dp2px(context, 1));
         mDividerPadding = a.getDimension(R.styleable.SlidingTabLayout_stl_dividerPadding, 0f);
         int dividerColor = a.getColor(R.styleable.SlidingTabLayout_stl_dividerColor, getAlphaColor(Color.BLACK, ((byte) 32)));
         this.mShowTabTextScaleAnim = a.getBoolean(R.styleable.SlidingTabLayout_stl_tabTextShowScaleAnim, true);
@@ -122,7 +122,7 @@ final class SlidingTabStrip extends LinearLayout {
 
         this.mIndicatorPaint = new Paint();
         this.mDividerPaint = new Paint();
-        this.mDividerPaint.setStrokeWidth(dividerThickness);
+        this.mDividerPaint.setStrokeWidth(dividerWidth);
         this.mIndicatorRectF = new RectF();
     }
 

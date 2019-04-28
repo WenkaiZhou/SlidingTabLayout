@@ -65,7 +65,7 @@
 
         <attr name="stl_dividerEnabled" format="boolean" />
         <attr name="stl_dividerColor" format="reference|color" />
-        <attr name="stl_dividerThickness" format="reference|dimension" />
+        <attr name="stl_dividerWidth" format="reference|dimension" />
         <attr name="stl_dividerPadding" format="reference|dimension" />
 
     </declare-styleable>

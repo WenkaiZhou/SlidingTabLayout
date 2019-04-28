@@ -85,7 +85,7 @@ stl_indicatorBottomMargin | dimension | Tab指示器距离底部高度 |
 stl_indicatorGravity | dimension | Tab指示器垂直方向位置，为上、中、下 |
 stl_dividerEnabled | boolean | Tab间分割线是否开启 |
 stl_dividerColor | color | Tab间分割线颜色 |
-stl_dividerThickness | dimension | Tab间分割线宽度 |
+stl_dividerWidth | dimension | Tab间分割线宽度 |
 stl_dividerPadding | dimension | Tab间分割线上下边距 |
 
 ### 在代码中配置
