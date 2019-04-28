@@ -111,7 +111,7 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
         this.mTabTextSize = a.getDimensionPixelSize(R.styleable.SlidingTabLayout_stl_tabTextSize, Util.sp2px(context, 16));
         this.mSelectedTabTextSize = a.getDimensionPixelSize(R.styleable.SlidingTabLayout_stl_tabTextSizeSelected, mTabTextSize);
         this.mTabTextColor = a.getColor(R.styleable.SlidingTabLayout_stl_tabTextColor, Color.GRAY);
-        this.mSelectedTabTextColor = a.getColor(R.styleable.SlidingTabLayout_stl_tabTextColorSelected, Color.DKGRAY);
+        this.mSelectedTabTextColor = a.getColor(R.styleable.SlidingTabLayout_stl_tabSelectedTextColor, Color.DKGRAY);
         this.mIsTabTextBold = a.getBoolean(R.styleable.SlidingTabLayout_stl_tabTextBold, false);
         a.recycle();
 

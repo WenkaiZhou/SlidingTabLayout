@@ -35,7 +35,7 @@
         app:stl_tabPaddingStart="8dp"
         app:stl_tabPaddingEnd="8dp"
         app:stl_tabTextColor="#827E80"
-        app:stl_tabTextColorSelected="#443F42"
+        app:stl_tabSelectedTextColor="#443F42"
         app:stl_tabTextSize="14sp"
         app:stl_tabTextSizeSelected="20dp" />
 

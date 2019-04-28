@@ -50,7 +50,7 @@
         app:stl_tabLayout="@layout/home_table"
         app:stl_tabTextBold="true"
         app:stl_tabTextColor="#333333"
-        app:stl_tabTextColorSelected="@android:color/holo_red_dark" />
+        app:stl_tabSelectedTextColor="@android:color/holo_red_dark" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/view_pager"
