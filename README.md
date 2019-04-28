@@ -66,9 +66,9 @@ stl_tabPaddingRight | dimension | Tab右边距 |
 stl_tabPaddingBottom | dimension | Tab下边距 |
 stl_tabVerticalGravity | enum | Tab垂直方向位置，为上、中、下 |
 stl_tabTextSize | dimension | Tab未选中文本大小 |
-stl_tabTextSizeSelected | dimension | Tab选中文本大小 |
+stl_tabSelectedTextSize | dimension | Tab选中文本大小 |
 stl_tabTextColor | color | Tab未选中文本颜色 |
-stl_tabTextColorSelected | color | Tab选中文本颜色 |
+stl_tabSelectedTextColor | color | Tab选中文本颜色 |
 stl_tabTextBold | boolean | Tab是否粗体 |
 stl_tabTextSelectedBold | boolean | Tab是否选中粗体 |
 stl_tabTextShowScaleAnim | boolean | Tab选中是否字体大小动画渐变 |
@@ -78,7 +78,6 @@ stl_indicatorColor | color | Tab指示器颜色 |
 stl_indicatorBackground | reference | Tab指示器背景 |
 stl_indicatorHeight | dimension | Tab指示器高度 |
 stl_indicatorWidth | dimension | Tab指示器宽度 |
-stl_indicatorWidthRatio | float | Tab指示器占Tab宽度比重 |
 stl_indicatorWidthRatio | float | Tab指示器占Tab宽度比重 |
 stl_indicatorCornerRadius | dimension | Tab指示器圆角半径 |
 stl_indicatorTopMargin | dimension | Tab指示器距离顶部高度 |

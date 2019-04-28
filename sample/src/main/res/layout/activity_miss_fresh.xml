@@ -31,13 +31,13 @@
         app:stl_indicatorCreep="false"
         app:stl_indicatorHeight="2dp"
         app:stl_indicatorWidth="16dp"
-        app:stl_tabTextBold="true"
-        app:stl_tabPaddingStart="8dp"
         app:stl_tabPaddingEnd="8dp"
-        app:stl_tabTextColor="#827E80"
+        app:stl_tabPaddingStart="8dp"
         app:stl_tabSelectedTextColor="#443F42"
-        app:stl_tabTextSize="14sp"
-        app:stl_tabTextSizeSelected="20dp" />
+        app:stl_tabSelectedTextSize="20dp"
+        app:stl_tabTextBold="true"
+        app:stl_tabTextColor="#827E80"
+        app:stl_tabTextSize="14sp" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/view_pager"

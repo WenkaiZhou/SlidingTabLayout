@@ -40,7 +40,7 @@
         </attr>
 
         <attr name="stl_tabTextSize" format="reference|dimension" />
-        <attr name="stl_tabTextSizeSelected" format="reference|dimension" />
+        <attr name="stl_tabSelectedTextSize" format="reference|dimension" />
         <attr name="stl_tabTextColor" format="reference|color" />
         <attr name="stl_tabSelectedTextColor" format="reference|color" />
         <attr name="stl_tabTextBold" format="boolean" />

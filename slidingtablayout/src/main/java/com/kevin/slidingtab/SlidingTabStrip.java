@@ -233,7 +233,7 @@ final class SlidingTabStrip extends LinearLayout {
         }
     }
 
-    void setSelectedTabText(float selectedTabTextSize, @ColorInt int... colors) {
+    void setTabSelectedText(float selectedTabTextSize, @ColorInt int... colors) {
         this.mSelectedTabTextSize = selectedTabTextSize;
         if (mShowTabTextScaleAnim) {
             mShowTabTextScaleAnim = mSelectedTabTextSize != mTabTextSize;
