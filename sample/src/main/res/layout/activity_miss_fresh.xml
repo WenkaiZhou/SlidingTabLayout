@@ -32,6 +32,8 @@
         app:stl_indicatorHeight="2dp"
         app:stl_indicatorWidth="16dp"
         app:stl_tabTextBold="true"
+        app:stl_tabPaddingStart="8dp"
+        app:stl_tabPaddingEnd="8dp"
         app:stl_tabTextColor="#827E80"
         app:stl_tabTextColorSelected="#443F42"
         app:stl_tabTextSize="14sp"

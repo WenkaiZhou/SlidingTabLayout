@@ -28,7 +28,11 @@
         <attr name="stl_tabLayout" format="reference" />
 
         <attr name="stl_tabHorizontalAverage" format="boolean" />
-        <attr name="stl_tabHorizontalPadding" format="reference|dimension" />
+        <attr name="stl_tabPadding" format="reference|dimension" />
+        <attr name="stl_tabPaddingStart" format="reference|dimension" />
+        <attr name="stl_tabPaddingTop" format="reference|dimension" />
+        <attr name="stl_tabPaddingEnd" format="reference|dimension" />
+        <attr name="stl_tabPaddingBottom" format="reference|dimension" />
         <attr name="stl_tabVerticalGravity" format="enum">
             <enum name="center" value="16" />
             <enum name="top" value="48" />

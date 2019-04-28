@@ -57,7 +57,10 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
     private int mTabLayoutRes;
     private boolean mIsTabTextBold;
     private boolean mIsTabHorizontalAverage;
-    private float mTabHorizontalPadding;
+    int mTabPaddingStart;
+    int mTabPaddingTop;
+    int mTabPaddingEnd;
+    int mTabPaddingBottom;
     private int mTabTextColor;
     private int mSelectedTabTextColor;
     private int mTabTextSize;
@@ -95,7 +98,15 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
         this.mTabLayoutRes = a.getResourceId(R.styleable.SlidingTabLayout_stl_tabLayout, 0);
         this.mSmoothScroll = a.getBoolean(R.styleable.SlidingTabLayout_stl_smoothScroll, true);
         this.mIsTabHorizontalAverage = a.getBoolean(R.styleable.SlidingTabLayout_stl_tabHorizontalAverage, false);
-        this.mTabHorizontalPadding = a.getDimension(R.styleable.SlidingTabLayout_stl_tabHorizontalPadding, Util.dp2px(context, 8));
+
+        mTabPaddingStart = mTabPaddingTop = mTabPaddingEnd = mTabPaddingBottom = a.getDimensionPixelSize(R.styleable.SlidingTabLayout_stl_tabPadding, 0);
+        mTabPaddingStart = a.getDimensionPixelSize(R.styleable.SlidingTabLayout_stl_tabPaddingStart, 0);
+        mTabPaddingTop = a.getDimensionPixelSize(R.styleable.SlidingTabLayout_stl_tabPaddingTop, 0);
+        mTabPaddingEnd = a.getDimensionPixelSize(R.styleable.SlidingTabLayout_stl_tabPaddingEnd, 0);
+        mTabPaddingBottom = a.getDimensionPixelSize(R.styleable.SlidingTabLayout_stl_tabPaddingBottom, 0);
+
+
+
         int tabVerticalGravity = a.getInt(R.styleable.SlidingTabLayout_stl_tabVerticalGravity, Gravity.CENTER_VERTICAL);
         this.mTabTextSize = a.getDimensionPixelSize(R.styleable.SlidingTabLayout_stl_tabTextSize, Util.sp2px(context, 16));
         this.mSelectedTabTextSize = a.getDimensionPixelSize(R.styleable.SlidingTabLayout_stl_tabTextSizeSelected, mTabTextSize);
@@ -304,7 +315,7 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
     }
 
     private void setLayoutParams(View view, int position) {
-        view.setPadding((int) mTabHorizontalPadding, 0, (int) mTabHorizontalPadding, 0);
+        view.setPadding(mTabPaddingStart, mTabPaddingTop, mTabPaddingEnd, mTabPaddingBottom);
         TextView text;
         if (view instanceof TextView) {
             text = (TextView) view;
@@ -319,12 +330,11 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
         int tabWidth = mIsTabHorizontalAverage ? getWidth() / mViewPager.getAdapter().getCount() : LinearLayout.LayoutParams.WRAP_CONTENT;
         view.setLayoutParams(new LinearLayout.LayoutParams(tabWidth, LinearLayout.LayoutParams.WRAP_CONTENT));
 
-        int horizontalPadding = (int) mTabHorizontalPadding;
         if (position == 0 && mLeftPadding > 0) {
-            view.setPadding((int) mLeftPadding + horizontalPadding, 0, horizontalPadding, 0);
+            view.setPadding((int) mLeftPadding + mTabPaddingStart, mTabPaddingTop, mTabPaddingEnd, mTabPaddingBottom);
         }
         if (position == mViewPager.getAdapter().getCount() - 1 && mRightPadding > 0) {
-            view.setPadding(horizontalPadding, 0, (int) mRightPadding + horizontalPadding, 0);
+            view.setPadding(mTabPaddingStart, mTabPaddingTop, (int) mRightPadding + mTabPaddingEnd, mTabPaddingBottom);
         }
     }
 

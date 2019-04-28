@@ -59,7 +59,11 @@ stl_rightPadding | dimension | 最后一个Tab距离右边的距离 |
 stl_smoothScroll | boolean | Tab在点击时ViewPager是否平滑切换 |
 stl_tabLayout | reference | 自定义Tab布局 |
 stl_tabHorizontalAverage | boolean | Tab水平平分整体宽度 |
-stl_tabHorizontalPadding | dimension | Tab左右边距 |
+stl_tabPadding | dimension | Tab边距 |
+stl_tabPaddingStart | dimension | Tab左边距 |
+stl_tabPaddingTop | dimension | Tab上边距 |
+stl_tabPaddingRight | dimension | Tab右边距 |
+stl_tabPaddingBottom | dimension | Tab下边距 |
 stl_tabVerticalGravity | enum | Tab垂直方向位置，为上、中、下 |
 stl_tabTextSize | dimension | Tab未选中文本大小 |
 stl_tabTextSizeSelected | dimension | Tab选中文本大小 |
