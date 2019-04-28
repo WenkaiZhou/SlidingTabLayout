@@ -47,7 +47,7 @@
         <attr name="stl_indicatorCreep" format="boolean" />
         <attr name="stl_indicatorColor" format="reference|color" />
         <attr name="stl_indicatorBackground" format="reference|color" />
-        <attr name="stl_indicatorThickness" format="reference|dimension" />
+        <attr name="stl_indicatorHeight" format="reference|dimension" />
         <attr name="stl_indicatorWidth" format="reference|dimension" />
         <attr name="stl_indicatorWidthRatio" format="float" />
         <attr name="stl_indicatorCornerRadius" format="reference|dimension" />

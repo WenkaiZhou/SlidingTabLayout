@@ -67,7 +67,7 @@ final class SlidingTabStrip extends LinearLayout {
 
     private boolean mIndicatorEnabled;
     private boolean mIndicatorCreep;
-    private float mIndicatorThickness;
+    private float mIndicatorHeight;
     private float mIndicatorWidth;
     private float mIndicatorWidthRatio;
     private int mIndicatorColor;
@@ -98,12 +98,12 @@ final class SlidingTabStrip extends LinearLayout {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SlidingTabLayout);
         this.mIndicatorEnabled = a.getBoolean(R.styleable.SlidingTabLayout_stl_indicatorEnabled, true);
         this.mIndicatorCreep = a.getBoolean(R.styleable.SlidingTabLayout_stl_indicatorCreep, true);
-        this.mIndicatorThickness = a.getDimension(R.styleable.SlidingTabLayout_stl_indicatorThickness, Util.dp2px(context, 4));
+        this.mIndicatorHeight = a.getDimension(R.styleable.SlidingTabLayout_stl_indicatorHeight, Util.dp2px(context, 4));
         this.mIndicatorWidth = a.getDimension(R.styleable.SlidingTabLayout_stl_indicatorWidth, 0);
         this.mIndicatorWidthRatio = a.getFloat(R.styleable.SlidingTabLayout_stl_indicatorWidthRatio, 1.0f);
         this.mIndicatorColor = a.getColor(R.styleable.SlidingTabLayout_stl_indicatorColor, Color.TRANSPARENT);
         this.mIndicatorDrawable = a.getDrawable(R.styleable.SlidingTabLayout_stl_indicatorBackground);
-        this.mIndicatorCornerRadius = a.getDimension(R.styleable.SlidingTabLayout_stl_indicatorCornerRadius, mIndicatorThickness / 2);
+        this.mIndicatorCornerRadius = a.getDimension(R.styleable.SlidingTabLayout_stl_indicatorCornerRadius, mIndicatorHeight / 2);
         this.mIndicatorTopMargin = a.getDimension(R.styleable.SlidingTabLayout_stl_indicatorTopMargin, 0f);
         this.mIndicatorBottomMargin = a.getDimension(R.styleable.SlidingTabLayout_stl_indicatorBottomMargin, 0f);
         this.mIndicatorGravity = a.getInt(R.styleable.SlidingTabLayout_stl_indicatorGravity, Gravity.BOTTOM);
@@ -431,13 +431,13 @@ final class SlidingTabStrip extends LinearLayout {
 
             switch (mIndicatorGravity) {
                 case Gravity.TOP:
-                    mIndicatorRectF.set(indicatorRectFLeft, mIndicatorTopMargin, indicatorRectFRight, mIndicatorTopMargin + mIndicatorThickness);
+                    mIndicatorRectF.set(indicatorRectFLeft, mIndicatorTopMargin, indicatorRectFRight, mIndicatorTopMargin + mIndicatorHeight);
                     break;
                 case Gravity.CENTER:
-                    mIndicatorRectF.set(indicatorRectFLeft, (getHeight() - mIndicatorThickness) / 2, indicatorRectFRight, (getHeight() + mIndicatorThickness) / 2);
+                    mIndicatorRectF.set(indicatorRectFLeft, (getHeight() - mIndicatorHeight) / 2, indicatorRectFRight, (getHeight() + mIndicatorHeight) / 2);
                     break;
                 case Gravity.BOTTOM:
-                    mIndicatorRectF.set(indicatorRectFLeft, getHeight() - mIndicatorThickness - mIndicatorBottomMargin, indicatorRectFRight, getHeight() - mIndicatorBottomMargin);
+                    mIndicatorRectF.set(indicatorRectFLeft, getHeight() - mIndicatorHeight - mIndicatorBottomMargin, indicatorRectFRight, getHeight() - mIndicatorBottomMargin);
                     break;
                 default:
                     // Can`t reach;

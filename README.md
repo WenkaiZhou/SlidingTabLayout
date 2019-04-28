@@ -72,7 +72,7 @@ stl_indicatorEnabled | boolean | Tab指示器是否开启 |
 stl_indicatorCreep | boolean | Tab指示器是否蠕动前行 |
 stl_indicatorColor | color | Tab指示器颜色 |
 stl_indicatorBackground | reference | Tab指示器背景 |
-stl_indicatorThickness | dimension | Tab指示器高度 |
+stl_indicatorHeight | dimension | Tab指示器高度 |
 stl_indicatorWidth | dimension | Tab指示器宽度 |
 stl_indicatorWidthRatio | float | Tab指示器占Tab宽度比重 |
 stl_indicatorWidthRatio | float | Tab指示器占Tab宽度比重 |

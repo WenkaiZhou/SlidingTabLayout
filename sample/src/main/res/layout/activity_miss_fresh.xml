@@ -29,7 +29,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:stl_indicatorColor="#FC468D"
         app:stl_indicatorCreep="false"
-        app:stl_indicatorThickness="2dp"
+        app:stl_indicatorHeight="2dp"
         app:stl_indicatorWidth="16dp"
         app:stl_tabTextBold="true"
         app:stl_tabTextColorDefault="#827E80"
