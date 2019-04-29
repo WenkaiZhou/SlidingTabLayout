@@ -52,11 +52,14 @@ import android.widget.TextView;
  */
 public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeObserver.OnGlobalLayoutListener {
 
+    private static final int MODE_SCROLLABLE = 0;
+    private static final int MODE_FIXED = 1;
+
+    private int mMode;
     private float mLeftPadding;
     private float mRightPadding;
     private int mTabLayoutRes;
     private boolean mIsTabTextBold;
-    private boolean mIsTabHorizontalAverage;
     int mTabPaddingStart;
     int mTabPaddingTop;
     int mTabPaddingEnd;
@@ -92,19 +95,19 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
         this.setFillViewport(true);
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SlidingTabLayout);
+        this.mMode = a.getInt(R.styleable.SlidingTabLayout_stl_scrollMode, MODE_FIXED);
         this.mLeftPadding = a.getDimension(R.styleable.SlidingTabLayout_stl_leftPadding, 0);
         this.mRightPadding = a.getDimension(R.styleable.SlidingTabLayout_stl_rightPadding, 0);
         this.mSmoothScroll = a.getBoolean(R.styleable.SlidingTabLayout_stl_smoothScroll, true);
         this.mTabLayoutRes = a.getResourceId(R.styleable.SlidingTabLayout_stl_tabLayout, 0);
         this.mSmoothScroll = a.getBoolean(R.styleable.SlidingTabLayout_stl_smoothScroll, true);
-        this.mIsTabHorizontalAverage = a.getBoolean(R.styleable.SlidingTabLayout_stl_tabHorizontalAverage, false);
         mTabPaddingStart = mTabPaddingTop = mTabPaddingEnd = mTabPaddingBottom = a.getDimensionPixelSize(R.styleable.SlidingTabLayout_stl_tabPadding, 0);
         this.mTabPaddingStart = a.getDimensionPixelSize(R.styleable.SlidingTabLayout_stl_tabPaddingStart, 0);
         this.mTabPaddingTop = a.getDimensionPixelSize(R.styleable.SlidingTabLayout_stl_tabPaddingTop, 0);
         this.mTabPaddingEnd = a.getDimensionPixelSize(R.styleable.SlidingTabLayout_stl_tabPaddingEnd, 0);
         this.mTabPaddingBottom = a.getDimensionPixelSize(R.styleable.SlidingTabLayout_stl_tabPaddingBottom, 0);
         int tabVerticalGravity = a.getInt(R.styleable.SlidingTabLayout_stl_tabVerticalGravity, Gravity.CENTER_VERTICAL);
-        this.mTabTextSize = a.getDimensionPixelSize(R.styleable.SlidingTabLayout_stl_tabTextSize, Util.sp2px(context, 16));
+        this.mTabTextSize = a.getDimensionPixelSize(R.styleable.SlidingTabLayout_stl_tabTextSize, dpToPx(16));
         this.mTabSelectedTextSize = a.getDimensionPixelSize(R.styleable.SlidingTabLayout_stl_tabSelectedTextSize, mTabTextSize);
         this.mTabTextColor = a.getColor(R.styleable.SlidingTabLayout_stl_tabTextColor, Color.GRAY);
         this.mSelectedTabTextColor = a.getColor(R.styleable.SlidingTabLayout_stl_tabSelectedTextColor, Color.DKGRAY);
@@ -161,7 +164,7 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
     }
 
     private void setPagerAdapter(PagerAdapter adapter) {
-        if (mIsTabHorizontalAverage) {
+        if (mMode == MODE_FIXED) {
             getViewTreeObserver().addOnGlobalLayoutListener(this);
         }
 
@@ -323,7 +326,7 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
         text.setTextSize(TypedValue.COMPLEX_UNIT_PX, mTabTextSize);
         text.setTextColor(mTabTextColor);
         text.setTypeface(Typeface.defaultFromStyle(mIsTabTextBold ? Typeface.BOLD : Typeface.NORMAL));
-        int tabWidth = mIsTabHorizontalAverage ? getWidth() / mViewPager.getAdapter().getCount() : LinearLayout.LayoutParams.WRAP_CONTENT;
+        int tabWidth = mMode == MODE_FIXED ? getWidth() / mViewPager.getAdapter().getCount() : LinearLayout.LayoutParams.WRAP_CONTENT;
         view.setLayoutParams(new LinearLayout.LayoutParams(tabWidth, LinearLayout.LayoutParams.WRAP_CONTENT));
 
         if (position == 0 && mLeftPadding > 0) {
@@ -440,6 +443,10 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
         }
         scrollX += (right - left) / 2;
         scrollTo((int) scrollX, 0);
+    }
+
+    int dpToPx(int dps) {
+        return Math.round(getResources().getDisplayMetrics().density * dps);
     }
 
     class TabClickListener implements View.OnClickListener {

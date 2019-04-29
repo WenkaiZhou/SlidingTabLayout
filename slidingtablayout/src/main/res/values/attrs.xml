@@ -17,6 +17,11 @@
 
     <declare-styleable name="SlidingTabLayout">
 
+        <attr name="stl_scrollMode" format="enum">
+            <enum name="scrollable" value="0" />
+            <enum name="fixed" value="1" />
+        </attr>
+
         <!--the widget left and right padding-->
         <attr name="stl_leftPadding" format="reference|dimension" />
         <attr name="stl_rightPadding" format="reference|dimension" />
@@ -27,7 +32,6 @@
         <!--the layout of each tab-->
         <attr name="stl_tabLayout" format="reference" />
 
-        <attr name="stl_tabHorizontalAverage" format="boolean" />
         <attr name="stl_tabPadding" format="reference|dimension" />
         <attr name="stl_tabPaddingStart" format="reference|dimension" />
         <attr name="stl_tabPaddingTop" format="reference|dimension" />

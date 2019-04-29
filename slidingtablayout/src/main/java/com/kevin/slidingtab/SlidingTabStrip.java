@@ -45,6 +45,8 @@ import android.widget.TextView;
  */
 final class SlidingTabStrip extends LinearLayout {
 
+    private static final int ANIMATION_DURATION = 300;
+
     private float mLeftPadding;
     private float mRightPadding;
     private boolean mIsTabSelected;
@@ -97,20 +99,20 @@ final class SlidingTabStrip extends LinearLayout {
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SlidingTabLayout);
         this.mIndicatorEnabled = a.getBoolean(R.styleable.SlidingTabLayout_stl_indicatorEnabled, true);
-        this.mIndicatorCreep = a.getBoolean(R.styleable.SlidingTabLayout_stl_indicatorCreep, true);
-        this.mIndicatorHeight = a.getDimension(R.styleable.SlidingTabLayout_stl_indicatorHeight, Util.dp2px(context, 4));
+        this.mIndicatorCreep = a.getBoolean(R.styleable.SlidingTabLayout_stl_indicatorCreep, false);
+        this.mIndicatorHeight = a.getDimension(R.styleable.SlidingTabLayout_stl_indicatorHeight, 0);
         this.mIndicatorWidth = a.getDimension(R.styleable.SlidingTabLayout_stl_indicatorWidth, 0);
         this.mIndicatorWidthRatio = a.getFloat(R.styleable.SlidingTabLayout_stl_indicatorWidthRatio, 1.0f);
         this.mIndicatorColor = a.getColor(R.styleable.SlidingTabLayout_stl_indicatorColor, Color.TRANSPARENT);
         this.mIndicatorDrawable = a.getDrawable(R.styleable.SlidingTabLayout_stl_indicatorBackground);
-        this.mIndicatorCornerRadius = a.getDimension(R.styleable.SlidingTabLayout_stl_indicatorCornerRadius, mIndicatorHeight / 2);
+        this.mIndicatorCornerRadius = a.getDimension(R.styleable.SlidingTabLayout_stl_indicatorCornerRadius, 0);
         this.mIndicatorTopMargin = a.getDimension(R.styleable.SlidingTabLayout_stl_indicatorTopMargin, 0f);
         this.mIndicatorBottomMargin = a.getDimension(R.styleable.SlidingTabLayout_stl_indicatorBottomMargin, 0f);
         this.mIndicatorGravity = a.getInt(R.styleable.SlidingTabLayout_stl_indicatorGravity, Gravity.BOTTOM);
         this.mIsTabTextSelectedBold = a.getBoolean(R.styleable.SlidingTabLayout_stl_tabTextSelectedBold, false);
         this.mIsTabTextBold = a.getBoolean(R.styleable.SlidingTabLayout_stl_tabTextBold, false);
         this.mDividerEnabled = a.getBoolean(R.styleable.SlidingTabLayout_stl_dividerEnabled, false);
-        float dividerWidth = a.getDimension(R.styleable.SlidingTabLayout_stl_dividerWidth, Util.dp2px(context, 1));
+        float dividerWidth = a.getDimension(R.styleable.SlidingTabLayout_stl_dividerWidth, 0);
         mDividerPadding = a.getDimension(R.styleable.SlidingTabLayout_stl_dividerPadding, 0f);
         int dividerColor = a.getColor(R.styleable.SlidingTabLayout_stl_dividerColor, getAlphaColor(Color.BLACK, ((byte) 32)));
         this.mShowTabTextScaleAnim = a.getBoolean(R.styleable.SlidingTabLayout_stl_tabTextShowScaleAnim, true);
@@ -165,7 +167,7 @@ final class SlidingTabStrip extends LinearLayout {
         final TextView text = getTextView(index);
         if (showAnim) {
             final ValueAnimator animator = ValueAnimator.ofFloat(text.getTextSize(), size);
-            animator.setDuration(300L);
+            animator.setDuration(ANIMATION_DURATION);
             animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 public void onAnimationUpdate(ValueAnimator paramAnonymousValueAnimator) {
                     float f = ((Float) paramAnonymousValueAnimator.getAnimatedValue()).floatValue();
@@ -358,7 +360,7 @@ final class SlidingTabStrip extends LinearLayout {
         }
 
         // draw indicator
-        if (mIndicatorEnabled) {
+        if (mIndicatorEnabled && mIndicatorHeight > 0) {
             View firstPageTabView = getChildAt(mFirstPagePosition);
             float firstPageTabLeft = firstPageTabView.getLeft();
             float firstPageTabRight = firstPageTabView.getRight();
@@ -450,12 +452,20 @@ final class SlidingTabStrip extends LinearLayout {
             } else {
                 canvas.drawRoundRect(mIndicatorRectF, mIndicatorCornerRadius, mIndicatorCornerRadius, mIndicatorPaint);
             }
-
-            if (mOnColorChangeListener != null) {
-                mOnColorChangeListener.onColorChanged(firstPageTextColor);
-            }
         }
 
+        // Callback the change color.
+        if (mOnColorChangeListener != null) {
+            int firstPageTextColor = tabPalette.getTextColor(mFirstPagePosition);
+            // Sliding the page.
+            if (mFirstPagePosition < getChildCount() - 1) {
+                int secondPageTextColor = tabPalette.getTextColor(secondPagePosition);
+                if (firstPageTextColor != secondPageTextColor) {
+                    firstPageTextColor = mixColor(secondPageTextColor, firstPageTextColor, mFirstPagePositionOffset);
+                }
+            }
+            mOnColorChangeListener.onColorChanged(firstPageTextColor);
+        }
     }
 
     class SimpleTabPalette implements SlidingTabLayout.TabPalette {
