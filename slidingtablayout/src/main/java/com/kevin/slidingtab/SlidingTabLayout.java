@@ -102,10 +102,10 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
         this.mTabLayoutRes = a.getResourceId(R.styleable.SlidingTabLayout_stl_tabLayout, 0);
         this.mSmoothScroll = a.getBoolean(R.styleable.SlidingTabLayout_stl_smoothScroll, true);
         mTabPaddingStart = mTabPaddingTop = mTabPaddingEnd = mTabPaddingBottom = a.getDimensionPixelSize(R.styleable.SlidingTabLayout_stl_tabPadding, 0);
-        this.mTabPaddingStart = a.getDimensionPixelSize(R.styleable.SlidingTabLayout_stl_tabPaddingStart, 0);
-        this.mTabPaddingTop = a.getDimensionPixelSize(R.styleable.SlidingTabLayout_stl_tabPaddingTop, 0);
-        this.mTabPaddingEnd = a.getDimensionPixelSize(R.styleable.SlidingTabLayout_stl_tabPaddingEnd, 0);
-        this.mTabPaddingBottom = a.getDimensionPixelSize(R.styleable.SlidingTabLayout_stl_tabPaddingBottom, 0);
+        this.mTabPaddingStart = a.getDimensionPixelSize(R.styleable.SlidingTabLayout_stl_tabPaddingStart, mTabPaddingStart);
+        this.mTabPaddingTop = a.getDimensionPixelSize(R.styleable.SlidingTabLayout_stl_tabPaddingTop, mTabPaddingTop);
+        this.mTabPaddingEnd = a.getDimensionPixelSize(R.styleable.SlidingTabLayout_stl_tabPaddingEnd, mTabPaddingEnd);
+        this.mTabPaddingBottom = a.getDimensionPixelSize(R.styleable.SlidingTabLayout_stl_tabPaddingBottom, mTabPaddingBottom);
         int tabVerticalGravity = a.getInt(R.styleable.SlidingTabLayout_stl_tabVerticalGravity, Gravity.CENTER_VERTICAL);
         this.mTabTextSize = a.getDimensionPixelSize(R.styleable.SlidingTabLayout_stl_tabTextSize, dpToPx(16));
         this.mTabSelectedTextSize = a.getDimensionPixelSize(R.styleable.SlidingTabLayout_stl_tabSelectedTextSize, mTabTextSize);

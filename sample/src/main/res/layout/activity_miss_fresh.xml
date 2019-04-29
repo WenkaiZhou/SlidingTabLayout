@@ -28,7 +28,6 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:stl_indicatorColor="#FC468D"
-        app:stl_indicatorCreep="false"
         app:stl_indicatorHeight="2dp"
         app:stl_indicatorWidth="16dp"
         app:stl_scrollMode="scrollable"
