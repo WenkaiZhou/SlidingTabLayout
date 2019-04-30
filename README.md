@@ -54,7 +54,7 @@ tabLayout.setViewPager(viewPager);
 
 名称 | 格式 |  说明
 -|-|-
-stl_scrollMode | enum | fixed:水平平分整体宽度, scrollable:可滚动 |
+stl_tabMode | enum | fixed:水平平分整体宽度, scrollable:可滚动 |
 stl_leftPadding | dimension | 第一个Tab距离左边的距离 |
 stl_rightPadding | dimension | 最后一个Tab距离右边的距离 |
 stl_smoothScroll | boolean | Tab在点击时ViewPager是否平滑切换 |

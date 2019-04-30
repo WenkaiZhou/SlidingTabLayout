@@ -30,7 +30,7 @@
         app:stl_indicatorColor="#FC468D"
         app:stl_indicatorHeight="2dp"
         app:stl_indicatorWidth="16dp"
-        app:stl_scrollMode="scrollable"
+        app:stl_tabMode="scrollable"
         app:stl_tabPaddingEnd="8dp"
         app:stl_tabPaddingStart="8dp"
         app:stl_tabSelectedTextColor="#443F42"

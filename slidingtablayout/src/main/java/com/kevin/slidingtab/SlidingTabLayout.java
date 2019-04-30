@@ -95,7 +95,7 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
         this.setFillViewport(true);
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SlidingTabLayout);
-        this.mMode = a.getInt(R.styleable.SlidingTabLayout_stl_scrollMode, MODE_FIXED);
+        this.mMode = a.getInt(R.styleable.SlidingTabLayout_stl_tabMode, MODE_FIXED);
         this.mLeftPadding = a.getDimension(R.styleable.SlidingTabLayout_stl_leftPadding, 0);
         this.mRightPadding = a.getDimension(R.styleable.SlidingTabLayout_stl_rightPadding, 0);
         this.mSmoothScroll = a.getBoolean(R.styleable.SlidingTabLayout_stl_smoothScroll, true);

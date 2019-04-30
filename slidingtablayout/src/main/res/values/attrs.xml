@@ -17,7 +17,7 @@
 
     <declare-styleable name="SlidingTabLayout">
 
-        <attr name="stl_scrollMode" format="enum">
+        <attr name="stl_tabMode" format="enum">
             <enum name="scrollable" value="0" />
             <enum name="fixed" value="1" />
         </attr>
