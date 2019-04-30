@@ -102,7 +102,7 @@ final class SlidingTabStrip extends LinearLayout {
         this.mIndicatorWidth = a.getDimension(R.styleable.SlidingTabLayout_stl_tabIndicatorWidth, 0);
         this.mIndicatorWidthRatio = a.getFloat(R.styleable.SlidingTabLayout_stl_tabIndicatorWidthRatio, 1.0f);
         this.mIndicatorColor = a.getColor(R.styleable.SlidingTabLayout_stl_tabIndicatorColor, Color.TRANSPARENT);
-        this.mIndicatorDrawable = a.getDrawable(R.styleable.SlidingTabLayout_stl_tabIndicatorBackground);
+        this.mIndicatorDrawable = a.getDrawable(R.styleable.SlidingTabLayout_stl_tabIndicator);
         this.mIndicatorCornerRadius = a.getDimension(R.styleable.SlidingTabLayout_stl_tabIndicatorCornerRadius, 0);
         this.mIndicatorTopMargin = a.getDimension(R.styleable.SlidingTabLayout_stl_tabIndicatorMarginTop, 0f);
         this.mIndicatorBottomMargin = a.getDimension(R.styleable.SlidingTabLayout_stl_tabIndicatorMarginBottom, 0f);

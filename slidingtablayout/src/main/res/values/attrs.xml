@@ -53,7 +53,7 @@
 
         <attr name="stl_tabIndicatorCreep" format="boolean" />
         <attr name="stl_tabIndicatorColor" format="reference|color" />
-        <attr name="stl_tabIndicatorBackground" format="reference|color" />
+        <attr name="stl_tabIndicator" format="reference|color" />
         <attr name="stl_tabIndicatorHeight" format="reference|dimension" />
         <attr name="stl_tabIndicatorWidth" format="reference|dimension" />
         <attr name="stl_tabIndicatorWidthRatio" format="float" />

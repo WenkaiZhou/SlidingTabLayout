@@ -74,7 +74,7 @@ stl_tabTextSelectedBold | boolean | Tab是否选中粗体 |
 stl_tabTextShowScaleAnim | boolean | Tab选中是否字体大小动画渐变 |
 stl_tabIndicatorCreep | boolean | Tab指示器是否蠕动前行 |
 stl_tabIndicatorColor | color | Tab指示器颜色 |
-stl_tabIndicatorBackground | reference | Tab指示器背景 |
+stl_tabIndicator | reference | Tab指示器背景 |
 stl_tabIndicatorHeight | dimension | Tab指示器高度 |
 stl_tabIndicatorWidth | dimension | Tab指示器宽度 |
 stl_tabIndicatorWidthRatio | float | Tab指示器占Tab宽度比重 |
