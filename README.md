@@ -72,19 +72,19 @@ stl_tabSelectedTextColor | color | Tab选中文本颜色 |
 stl_tabTextBold | boolean | Tab是否粗体 |
 stl_tabTextSelectedBold | boolean | Tab是否选中粗体 |
 stl_tabTextShowScaleAnim | boolean | Tab选中是否字体大小动画渐变 |
-stl_indicatorCreep | boolean | Tab指示器是否蠕动前行 |
-stl_indicatorColor | color | Tab指示器颜色 |
-stl_indicatorBackground | reference | Tab指示器背景 |
-stl_indicatorHeight | dimension | Tab指示器高度 |
-stl_indicatorWidth | dimension | Tab指示器宽度 |
-stl_indicatorWidthRatio | float | Tab指示器占Tab宽度比重 |
-stl_indicatorCornerRadius | dimension | Tab指示器圆角半径 |
-stl_indicatorTopMargin | dimension | Tab指示器距离顶部高度 |
-stl_indicatorBottomMargin | dimension | Tab指示器距离底部高度 |
-stl_indicatorGravity | dimension | Tab指示器垂直方向位置，为上、中、下 |
-stl_dividerColor | color | Tab间分割线颜色 |
-stl_dividerWidth | dimension | Tab间分割线宽度 |
-stl_dividerPadding | dimension | Tab间分割线上下边距 |
+stl_tabIndicatorCreep | boolean | Tab指示器是否蠕动前行 |
+stl_tabIndicatorColor | color | Tab指示器颜色 |
+stl_tabIndicatorBackground | reference | Tab指示器背景 |
+stl_tabIndicatorHeight | dimension | Tab指示器高度 |
+stl_tabIndicatorWidth | dimension | Tab指示器宽度 |
+stl_tabIndicatorWidthRatio | float | Tab指示器占Tab宽度比重 |
+stl_tabIndicatorCornerRadius | dimension | Tab指示器圆角半径 |
+stl_tabIndicatorMarginTop | dimension | Tab指示器距离顶部高度 |
+stl_tabIndicatorMarginBottom | dimension | Tab指示器距离底部高度 |
+stl_tabIndicatorGravity | dimension | Tab指示器垂直方向位置，为上、中、下 |
+stl_tabDividerColor | color | Tab间分割线颜色 |
+stl_tabDividerWidth | dimension | Tab间分割线宽度 |
+stl_tabDividerPadding | dimension | Tab间分割线上下边距 |
 
 ### 在代码中配置
 

@@ -51,24 +51,24 @@
         <attr name="stl_tabTextSelectedBold" format="boolean" />
         <attr name="stl_tabTextShowScaleAnim" format="boolean" />
 
-        <attr name="stl_indicatorCreep" format="boolean" />
-        <attr name="stl_indicatorColor" format="reference|color" />
-        <attr name="stl_indicatorBackground" format="reference|color" />
-        <attr name="stl_indicatorHeight" format="reference|dimension" />
-        <attr name="stl_indicatorWidth" format="reference|dimension" />
-        <attr name="stl_indicatorWidthRatio" format="float" />
-        <attr name="stl_indicatorCornerRadius" format="reference|dimension" />
-        <attr name="stl_indicatorTopMargin" format="reference|dimension" />
-        <attr name="stl_indicatorBottomMargin" format="reference|dimension" />
-        <attr name="stl_indicatorGravity" format="enum">
+        <attr name="stl_tabIndicatorCreep" format="boolean" />
+        <attr name="stl_tabIndicatorColor" format="reference|color" />
+        <attr name="stl_tabIndicatorBackground" format="reference|color" />
+        <attr name="stl_tabIndicatorHeight" format="reference|dimension" />
+        <attr name="stl_tabIndicatorWidth" format="reference|dimension" />
+        <attr name="stl_tabIndicatorWidthRatio" format="float" />
+        <attr name="stl_tabIndicatorCornerRadius" format="reference|dimension" />
+        <attr name="stl_tabIndicatorMarginTop" format="reference|dimension" />
+        <attr name="stl_tabIndicatorMarginBottom" format="reference|dimension" />
+        <attr name="stl_tabIndicatorGravity" format="enum">
             <enum name="center" value="17" />
             <enum name="top" value="48" />
             <enum name="bottom" value="80" />
         </attr>
 
-        <attr name="stl_dividerColor" format="reference|color" />
-        <attr name="stl_dividerWidth" format="reference|dimension" />
-        <attr name="stl_dividerPadding" format="reference|dimension" />
+        <attr name="stl_tabDividerColor" format="reference|color" />
+        <attr name="stl_tabDividerWidth" format="reference|dimension" />
+        <attr name="stl_tabDividerPadding" format="reference|dimension" />
 
     </declare-styleable>
 
