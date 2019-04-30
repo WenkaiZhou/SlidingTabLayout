@@ -106,7 +106,7 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
         this.mTabPaddingTop = a.getDimensionPixelSize(R.styleable.SlidingTabLayout_stl_tabPaddingTop, mTabPaddingTop);
         this.mTabPaddingEnd = a.getDimensionPixelSize(R.styleable.SlidingTabLayout_stl_tabPaddingEnd, mTabPaddingEnd);
         this.mTabPaddingBottom = a.getDimensionPixelSize(R.styleable.SlidingTabLayout_stl_tabPaddingBottom, mTabPaddingBottom);
-        int tabVerticalGravity = a.getInt(R.styleable.SlidingTabLayout_stl_tabVerticalGravity, Gravity.CENTER_VERTICAL);
+        int tabGravity = a.getInt(R.styleable.SlidingTabLayout_stl_tabGravity, Gravity.CENTER_VERTICAL);
         this.mTabTextSize = a.getDimensionPixelSize(R.styleable.SlidingTabLayout_stl_tabTextSize, dpToPx(16));
         this.mTabSelectedTextSize = a.getDimensionPixelSize(R.styleable.SlidingTabLayout_stl_tabSelectedTextSize, mTabTextSize);
         this.mTabTextColor = a.getColor(R.styleable.SlidingTabLayout_stl_tabTextColor, Color.GRAY);
@@ -115,7 +115,8 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
         a.recycle();
 
         this.mSlidingTabStrip = new SlidingTabStrip(context, attrs);
-        this.mSlidingTabStrip.setGravity(tabVerticalGravity);
+        this.mSlidingTabStrip.setPadding(0, 0, 0, 0);
+        this.mSlidingTabStrip.setGravity(tabGravity);
         this.mSlidingTabStrip.setLeftPadding(mLeftPadding);
         this.mSlidingTabStrip.setRightPadding(mRightPadding);
         this.mSlidingTabStrip.setTabTextBold(mIsTabTextBold);

@@ -64,7 +64,7 @@ stl_tabPaddingStart | dimension | Tab左边距 |
 stl_tabPaddingTop | dimension | Tab上边距 |
 stl_tabPaddingRight | dimension | Tab右边距 |
 stl_tabPaddingBottom | dimension | Tab下边距 |
-stl_tabVerticalGravity | enum | Tab垂直方向位置，为上、中、下 |
+stl_tabGravity | enum | Tab垂直方向位置，为上、中、下 |
 stl_tabTextSize | dimension | Tab未选中文本大小 |
 stl_tabSelectedTextSize | dimension | Tab选中文本大小 |
 stl_tabTextColor | color | Tab未选中文本颜色 |
@@ -72,7 +72,6 @@ stl_tabSelectedTextColor | color | Tab选中文本颜色 |
 stl_tabTextBold | boolean | Tab是否粗体 |
 stl_tabTextSelectedBold | boolean | Tab是否选中粗体 |
 stl_tabTextShowScaleAnim | boolean | Tab选中是否字体大小动画渐变 |
-stl_indicatorEnabled | boolean | Tab指示器是否开启 |
 stl_indicatorCreep | boolean | Tab指示器是否蠕动前行 |
 stl_indicatorColor | color | Tab指示器颜色 |
 stl_indicatorBackground | reference | Tab指示器背景 |
@@ -83,7 +82,6 @@ stl_indicatorCornerRadius | dimension | Tab指示器圆角半径 |
 stl_indicatorTopMargin | dimension | Tab指示器距离顶部高度 |
 stl_indicatorBottomMargin | dimension | Tab指示器距离底部高度 |
 stl_indicatorGravity | dimension | Tab指示器垂直方向位置，为上、中、下 |
-stl_dividerEnabled | boolean | Tab间分割线是否开启 |
 stl_dividerColor | color | Tab间分割线颜色 |
 stl_dividerWidth | dimension | Tab间分割线宽度 |
 stl_dividerPadding | dimension | Tab间分割线上下边距 |

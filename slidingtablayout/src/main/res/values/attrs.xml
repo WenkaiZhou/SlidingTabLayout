@@ -37,7 +37,7 @@
         <attr name="stl_tabPaddingTop" format="reference|dimension" />
         <attr name="stl_tabPaddingEnd" format="reference|dimension" />
         <attr name="stl_tabPaddingBottom" format="reference|dimension" />
-        <attr name="stl_tabVerticalGravity" format="enum">
+        <attr name="stl_tabGravity" format="enum">
             <enum name="center" value="16" />
             <enum name="top" value="48" />
             <enum name="bottom" value="80" />
@@ -51,7 +51,6 @@
         <attr name="stl_tabTextSelectedBold" format="boolean" />
         <attr name="stl_tabTextShowScaleAnim" format="boolean" />
 
-        <attr name="stl_indicatorEnabled" format="boolean" />
         <attr name="stl_indicatorCreep" format="boolean" />
         <attr name="stl_indicatorColor" format="reference|color" />
         <attr name="stl_indicatorBackground" format="reference|color" />
@@ -67,7 +66,6 @@
             <enum name="bottom" value="80" />
         </attr>
 
-        <attr name="stl_dividerEnabled" format="boolean" />
         <attr name="stl_dividerColor" format="reference|color" />
         <attr name="stl_dividerWidth" format="reference|dimension" />
         <attr name="stl_dividerPadding" format="reference|dimension" />
