@@ -247,10 +247,8 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
             this.getViewTreeObserver().removeGlobalOnLayoutListener(this);
         }
 
-        int width = getWidth() / mViewPager.getAdapter().getCount();
-        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
         for (int i = 0; i < mSlidingTabStrip.getChildCount(); i++) {
-            mSlidingTabStrip.getChildAt(i).setLayoutParams(new LinearLayout.LayoutParams(width, height));
+            setLayoutParams(mSlidingTabStrip.getChildAt(i), i);
         }
     }
 
