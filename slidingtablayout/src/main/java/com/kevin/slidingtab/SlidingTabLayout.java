@@ -22,6 +22,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.ColorInt;
+import android.support.annotation.IntDef;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.Px;
@@ -52,9 +53,14 @@ import android.widget.TextView;
  */
 public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeObserver.OnGlobalLayoutListener {
 
-    private static final int MODE_SCROLLABLE = 0;
-    private static final int MODE_FIXED = 1;
+    public static final int MODE_SCROLLABLE = 0;
+    public static final int MODE_FIXED = 1;
 
+    @IntDef({MODE_SCROLLABLE, MODE_FIXED})
+    public @interface TabMode {
+    }
+
+    @TabMode
     private int mMode;
     private float mLeftPadding;
     private float mRightPadding;
@@ -162,6 +168,13 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
 
     public ViewPager getViewPager() {
         return mViewPager;
+    }
+
+    public void setTabMode(@TabMode int mode) {
+        if (mMode != mode) {
+            this.mMode = mode;
+            setupWithViewPager(mViewPager);
+        }
     }
 
     private void setPagerAdapter(PagerAdapter adapter) {
