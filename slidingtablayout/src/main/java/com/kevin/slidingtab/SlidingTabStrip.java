@@ -17,7 +17,6 @@ package com.kevin.slidingtab;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -25,7 +24,6 @@ import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorInt;
-import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -86,8 +84,8 @@ final class SlidingTabStrip extends LinearLayout {
     private final SimpleTabPalette mTabPalette;
     private SlidingTabLayout.OnColorChangeListener mOnColorChangeListener;
 
-    SlidingTabStrip(Context context, AttributeSet attrs) {
-        super(context, attrs);
+    SlidingTabStrip(Context context) {
+        super(context);
         this.setWillNotDraw(false);
 
         this.mTabTextColor = Color.GRAY;
@@ -96,28 +94,8 @@ final class SlidingTabStrip extends LinearLayout {
         this.mLeftInterpolator = new AccelerateInterpolator();
         this.mRightInterpolator = new DecelerateInterpolator();
 
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SlidingTabLayout);
-        this.mIndicatorCreep = a.getBoolean(R.styleable.SlidingTabLayout_stl_tabIndicatorCreep, false);
-        this.mIndicatorHeight = a.getDimension(R.styleable.SlidingTabLayout_stl_tabIndicatorHeight, 0);
-        this.mIndicatorWidth = a.getDimension(R.styleable.SlidingTabLayout_stl_tabIndicatorWidth, 0);
-        this.mIndicatorWidthRatio = a.getFloat(R.styleable.SlidingTabLayout_stl_tabIndicatorWidthRatio, 1.0f);
-        this.mIndicatorColor = a.getColor(R.styleable.SlidingTabLayout_stl_tabIndicatorColor, Color.TRANSPARENT);
-        this.mIndicatorDrawable = a.getDrawable(R.styleable.SlidingTabLayout_stl_tabIndicator);
-        this.mIndicatorCornerRadius = a.getDimension(R.styleable.SlidingTabLayout_stl_tabIndicatorCornerRadius, 0);
-        this.mIndicatorTopMargin = a.getDimension(R.styleable.SlidingTabLayout_stl_tabIndicatorMarginTop, 0f);
-        this.mIndicatorBottomMargin = a.getDimension(R.styleable.SlidingTabLayout_stl_tabIndicatorMarginBottom, 0f);
-        this.mIndicatorGravity = a.getInt(R.styleable.SlidingTabLayout_stl_tabIndicatorGravity, Gravity.BOTTOM);
-        this.mIsTabTextSelectedBold = a.getBoolean(R.styleable.SlidingTabLayout_stl_tabTextSelectedBold, false);
-        this.mIsTabTextBold = a.getBoolean(R.styleable.SlidingTabLayout_stl_tabTextBold, false);
-        this.mDividerWidth = a.getDimension(R.styleable.SlidingTabLayout_stl_tabDividerWidth, 0);
-        mDividerPadding = a.getDimension(R.styleable.SlidingTabLayout_stl_tabDividerPadding, 0f);
-        int dividerColor = a.getColor(R.styleable.SlidingTabLayout_stl_tabDividerColor, getAlphaColor(Color.BLACK, ((byte) 32)));
-        this.mShowTabTextScaleAnim = a.getBoolean(R.styleable.SlidingTabLayout_stl_tabTextShowScaleAnim, true);
-        a.recycle();
-
         this.mTabPalette = new SimpleTabPalette();
         this.mTabPalette.setTextColors(Color.DKGRAY);
-        this.mTabPalette.setDividerColors(dividerColor);
 
         this.mIndicatorPaint = new Paint();
         this.mDividerPaint = new Paint();
@@ -125,20 +103,80 @@ final class SlidingTabStrip extends LinearLayout {
         this.mIndicatorRectF = new RectF();
     }
 
-    public void setLeftPadding(float leftPadding) {
+    void setLeftPadding(float leftPadding) {
         this.mLeftPadding = leftPadding;
     }
 
-    public void setRightPadding(float rightPadding) {
+    void setRightPadding(float rightPadding) {
         this.mRightPadding = rightPadding;
+    }
+
+    void setIndicatorCreep(boolean creep) {
+        this.mIndicatorCreep = creep;
+    }
+
+    void setIndicatorHeight(float height) {
+        this.mIndicatorHeight = height;
+    }
+
+    void setIndicatorWidth(float width) {
+        this.mIndicatorWidth = width;
+    }
+
+    void setIndicatorWidthRatio(float widthRatio) {
+        this.mIndicatorWidthRatio = widthRatio;
+    }
+
+    void setIndicatorColor(int color) {
+        this.mIndicatorColor = color;
+    }
+
+    void setIndicatorDrawable(Drawable drawable) {
+        this.mIndicatorDrawable = drawable;
+    }
+
+    void setIndicatorCornerRadius(float cornerRadius) {
+        this.mIndicatorCornerRadius = cornerRadius;
+    }
+
+    void setIndicatorTopMargin(float topMargin) {
+        this.mIndicatorTopMargin = topMargin;
+    }
+
+    void setIndicatorBottomMargin(float bottomMargin) {
+        this.mIndicatorBottomMargin = bottomMargin;
+    }
+
+    void setIndicatorGravity(int gravity) {
+        this.mIndicatorGravity = gravity;
+    }
+
+    void setIsTabTextSelectedBold(boolean selectedBold) {
+        this.mIsTabTextSelectedBold = selectedBold;
+    }
+
+    void setIsTabTextBold(boolean bold) {
+        this.mIsTabTextBold = bold;
+    }
+
+    void setmDividerWidth(float width) {
+        this.mDividerWidth = width;
+    }
+
+    void setDividerPadding(float padding) {
+        this.mDividerPadding = padding;
+    }
+
+    void setDividerColor(int color) {
+        this.mTabPalette.setDividerColors(color);
+    }
+
+    void setShowTabTextScaleAnim(boolean scaleAnim) {
+        this.mShowTabTextScaleAnim = scaleAnim;
     }
 
     void setTabSelected(boolean mIsTabSelected) {
         this.mIsTabSelected = mIsTabSelected;
-    }
-
-    private int getAlphaColor(int color, byte alpha) {
-        return Color.argb(alpha, Color.red(color), Color.green(color), Color.blue(color));
     }
 
     private int mixColor(int firstColor, int secondColor, float ratio) {

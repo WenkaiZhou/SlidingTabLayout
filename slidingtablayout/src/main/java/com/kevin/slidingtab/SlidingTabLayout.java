@@ -100,6 +100,8 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
         this.setHorizontalScrollBarEnabled(false);
         this.setFillViewport(true);
 
+        this.mSlidingTabStrip = new SlidingTabStrip(context);
+
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SlidingTabLayout);
         this.mMode = a.getInt(R.styleable.SlidingTabLayout_stl_tabMode, MODE_FIXED);
         this.mLeftPadding = a.getDimension(R.styleable.SlidingTabLayout_stl_leftPadding, 0);
@@ -112,22 +114,39 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
         this.mTabPaddingTop = a.getDimensionPixelSize(R.styleable.SlidingTabLayout_stl_tabPaddingTop, mTabPaddingTop);
         this.mTabPaddingEnd = a.getDimensionPixelSize(R.styleable.SlidingTabLayout_stl_tabPaddingEnd, mTabPaddingEnd);
         this.mTabPaddingBottom = a.getDimensionPixelSize(R.styleable.SlidingTabLayout_stl_tabPaddingBottom, mTabPaddingBottom);
-        int tabGravity = a.getInt(R.styleable.SlidingTabLayout_stl_tabGravity, Gravity.CENTER_VERTICAL);
         this.mTabTextSize = a.getDimensionPixelSize(R.styleable.SlidingTabLayout_stl_tabTextSize, dpToPx(16));
         this.mTabSelectedTextSize = a.getDimensionPixelSize(R.styleable.SlidingTabLayout_stl_tabSelectedTextSize, mTabTextSize);
         this.mTabTextColor = a.getColor(R.styleable.SlidingTabLayout_stl_tabTextColor, Color.GRAY);
         this.mSelectedTabTextColor = a.getColor(R.styleable.SlidingTabLayout_stl_tabSelectedTextColor, Color.DKGRAY);
         this.mIsTabTextBold = a.getBoolean(R.styleable.SlidingTabLayout_stl_tabTextBold, false);
-        a.recycle();
 
-        this.mSlidingTabStrip = new SlidingTabStrip(context, attrs);
-        this.mSlidingTabStrip.setPadding(0, 0, 0, 0);
-        this.mSlidingTabStrip.setGravity(tabGravity);
+        this.mSlidingTabStrip.setGravity(a.getInt(R.styleable.SlidingTabLayout_stl_tabGravity, Gravity.CENTER_VERTICAL));
         this.mSlidingTabStrip.setLeftPadding(mLeftPadding);
         this.mSlidingTabStrip.setRightPadding(mRightPadding);
+
         this.mSlidingTabStrip.setTabTextBold(mIsTabTextBold);
         this.mSlidingTabStrip.setTabText(mTabTextSize, mTabTextColor);
         this.mSlidingTabStrip.setTabSelectedText(mTabSelectedTextSize, mSelectedTabTextColor);
+
+        this.mSlidingTabStrip.setIndicatorCreep(a.getBoolean(R.styleable.SlidingTabLayout_stl_tabIndicatorCreep, false));
+        this.mSlidingTabStrip.setIndicatorHeight(a.getDimension(R.styleable.SlidingTabLayout_stl_tabIndicatorHeight, 0));
+        this.mSlidingTabStrip.setIndicatorWidth(a.getDimension(R.styleable.SlidingTabLayout_stl_tabIndicatorWidth, 0));
+        this.mSlidingTabStrip.setIndicatorCornerRadius(a.getFloat(R.styleable.SlidingTabLayout_stl_tabIndicatorWidthRatio, 1.0f));
+        this.mSlidingTabStrip.setIndicatorColor(a.getColor(R.styleable.SlidingTabLayout_stl_tabIndicatorColor, Color.TRANSPARENT));
+        this.mSlidingTabStrip.setIndicatorDrawable(a.getDrawable(R.styleable.SlidingTabLayout_stl_tabIndicator));
+        this.mSlidingTabStrip.setIndicatorCornerRadius(a.getDimension(R.styleable.SlidingTabLayout_stl_tabIndicatorCornerRadius, 0));
+        this.mSlidingTabStrip.setIndicatorTopMargin(a.getDimension(R.styleable.SlidingTabLayout_stl_tabIndicatorMarginTop, 0f));
+        this.mSlidingTabStrip.setIndicatorBottomMargin(a.getDimension(R.styleable.SlidingTabLayout_stl_tabIndicatorMarginBottom, 0f));
+        this.mSlidingTabStrip.setIndicatorGravity(a.getInt(R.styleable.SlidingTabLayout_stl_tabIndicatorGravity, Gravity.BOTTOM));
+        this.mSlidingTabStrip.setIsTabTextSelectedBold(a.getBoolean(R.styleable.SlidingTabLayout_stl_tabTextSelectedBold, false));
+        this.mSlidingTabStrip.setIsTabTextBold(mIsTabTextBold);
+
+        this.mSlidingTabStrip.setmDividerWidth(a.getDimension(R.styleable.SlidingTabLayout_stl_tabDividerWidth, 0));
+        this.mSlidingTabStrip.setDividerPadding(a.getDimension(R.styleable.SlidingTabLayout_stl_tabDividerPadding, 0f));
+        this.mSlidingTabStrip.setDividerColor(a.getColor(R.styleable.SlidingTabLayout_stl_tabDividerColor, getAlphaColor(Color.BLACK, ((byte) 32))));
+        this.mSlidingTabStrip.setShowTabTextScaleAnim(a.getBoolean(R.styleable.SlidingTabLayout_stl_tabTextShowScaleAnim, true));
+        a.recycle();
+
         this.addView(mSlidingTabStrip, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
     }
 
@@ -225,6 +244,10 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
             mOnTabCreateListener.onCreated();
         }
 
+    }
+
+    private int getAlphaColor(int color, byte alpha) {
+        return Color.argb(alpha, Color.red(color), Color.green(color), Color.blue(color));
     }
 
     @Override
