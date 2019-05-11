@@ -17,6 +17,7 @@ package com.kevin.slidingtab;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.database.DataSetObserver;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
@@ -81,6 +82,7 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
 
     private TabLayoutOnPageChangeListener mPageChangeListener;
     private AdapterChangeListener mAdapterChangeListener;
+    private DataSetObserver mPagerAdapterObserver;
 
     private OnTabCreateListener mOnTabCreateListener;
     private OnTabClickListener mOnTabClickListener;
@@ -197,6 +199,29 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
     }
 
     private void setPagerAdapter(PagerAdapter adapter) {
+        if (mViewPager.getAdapter() != null && mPagerAdapterObserver != null) {
+            // If we already have a PagerAdapter, unregister our observer
+            mViewPager.getAdapter().unregisterDataSetObserver(mPagerAdapterObserver);
+        }
+
+        if (adapter != null) {
+            // Register our observer on the new adapter
+            if (mPagerAdapterObserver == null) {
+                mPagerAdapterObserver = new PagerAdapterObserver();
+            }
+            adapter.registerDataSetObserver(mPagerAdapterObserver);
+        }
+
+        // Finally make sure we reflect the new adapter
+        populateFromPagerAdapter();
+    }
+
+    private void populateFromPagerAdapter() {
+        PagerAdapter adapter = mViewPager.getAdapter();
+        if (adapter == null) {
+            return;
+        }
+
         if (mMode == MODE_FIXED) {
             getViewTreeObserver().addOnGlobalLayoutListener(this);
         }
@@ -243,7 +268,6 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
         if (mOnTabCreateListener != null) {
             mOnTabCreateListener.onCreated();
         }
-
     }
 
     private int getAlphaColor(int color, byte alpha) {
@@ -509,6 +533,21 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
                     break;
                 }
             }
+        }
+    }
+
+    private class PagerAdapterObserver extends DataSetObserver {
+        PagerAdapterObserver() {
+        }
+
+        @Override
+        public void onChanged() {
+            populateFromPagerAdapter();
+        }
+
+        @Override
+        public void onInvalidated() {
+            populateFromPagerAdapter();
         }
     }
 
