@@ -240,9 +240,6 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
                 if (text != null) {
                     mIsTabTextBold = text.getTypeface().isBold();
                     mSlidingTabStrip.setTabTextBold(mIsTabTextBold);
-                    mTabTextSize = (int) text.getTextSize();
-                    mTabTextColor = text.getCurrentTextColor();
-                    mSlidingTabStrip.setTabText(mTabTextSize, mTabTextColor);
                 }
 
                 if (adapter instanceof SlidingTabPageAdapter && image != null) {
