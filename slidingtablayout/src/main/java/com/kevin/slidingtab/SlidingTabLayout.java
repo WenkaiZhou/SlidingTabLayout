@@ -126,7 +126,6 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
         this.mSlidingTabStrip.setLeftPadding(mLeftPadding);
         this.mSlidingTabStrip.setRightPadding(mRightPadding);
 
-        this.mSlidingTabStrip.setTabTextBold(mIsTabTextBold);
         this.mSlidingTabStrip.setTabText(mTabTextSize, mTabTextColor);
         this.mSlidingTabStrip.setTabSelectedText(mTabSelectedTextSize, mSelectedTabTextColor);
 
@@ -140,10 +139,10 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
         this.mSlidingTabStrip.setIndicatorTopMargin(a.getDimension(R.styleable.SlidingTabLayout_stl_tabIndicatorMarginTop, 0f));
         this.mSlidingTabStrip.setIndicatorBottomMargin(a.getDimension(R.styleable.SlidingTabLayout_stl_tabIndicatorMarginBottom, 0f));
         this.mSlidingTabStrip.setIndicatorGravity(a.getInt(R.styleable.SlidingTabLayout_stl_tabIndicatorGravity, Gravity.BOTTOM));
-        this.mSlidingTabStrip.setIsTabTextSelectedBold(a.getBoolean(R.styleable.SlidingTabLayout_stl_tabTextSelectedBold, false));
-        this.mSlidingTabStrip.setIsTabTextBold(mIsTabTextBold);
+        this.mSlidingTabStrip.setTabTextSelectedBold(a.getBoolean(R.styleable.SlidingTabLayout_stl_tabTextSelectedBold, false));
+        this.mSlidingTabStrip.setTabTextBold(mIsTabTextBold);
 
-        this.mSlidingTabStrip.setmDividerWidth(a.getDimension(R.styleable.SlidingTabLayout_stl_tabDividerWidth, 0));
+        this.mSlidingTabStrip.setDividerWidth(a.getDimension(R.styleable.SlidingTabLayout_stl_tabDividerWidth, 0));
         this.mSlidingTabStrip.setDividerPadding(a.getDimension(R.styleable.SlidingTabLayout_stl_tabDividerPadding, 0f));
         this.mSlidingTabStrip.setDividerColor(a.getColor(R.styleable.SlidingTabLayout_stl_tabDividerColor, getAlphaColor(Color.BLACK, ((byte) 32))));
         this.mSlidingTabStrip.setShowTabTextScaleAnim(a.getBoolean(R.styleable.SlidingTabLayout_stl_tabTextShowScaleAnim, true));
@@ -238,6 +237,13 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
                 view = LayoutInflater.from(this.getContext()).inflate(mTabLayoutRes, mSlidingTabStrip, false);
                 text = view.findViewById(R.id.sliding_tab_text);
                 image = view.findViewById(R.id.sliding_tab_image);
+                if (text != null) {
+                    mIsTabTextBold = text.getTypeface().isBold();
+                    mSlidingTabStrip.setTabTextBold(mIsTabTextBold);
+                    mTabTextSize = (int) text.getTextSize();
+                    mTabTextColor = text.getCurrentTextColor();
+                    mSlidingTabStrip.setTabText(mTabTextSize, mTabTextColor);
+                }
 
                 if (adapter instanceof SlidingTabPageAdapter && image != null) {
                     Drawable drawable = ((SlidingTabPageAdapter) adapter).getDrawable(i);
@@ -384,7 +390,7 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
         text.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
         text.setTextSize(TypedValue.COMPLEX_UNIT_PX, mTabTextSize);
         text.setTextColor(mTabTextColor);
-        text.setTypeface(Typeface.defaultFromStyle(mIsTabTextBold ? Typeface.BOLD : Typeface.NORMAL));
+        text.setTypeface(Typeface.create(text.getTypeface(), mIsTabTextBold ? Typeface.BOLD : Typeface.NORMAL));
         int tabWidth = mMode == MODE_FIXED ? getWidth() / mViewPager.getAdapter().getCount() : LinearLayout.LayoutParams.WRAP_CONTENT;
         view.setLayoutParams(new LinearLayout.LayoutParams(tabWidth, LinearLayout.LayoutParams.WRAP_CONTENT));
 

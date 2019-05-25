@@ -151,15 +151,11 @@ final class SlidingTabStrip extends LinearLayout {
         this.mIndicatorGravity = gravity;
     }
 
-    void setIsTabTextSelectedBold(boolean selectedBold) {
+    void setTabTextSelectedBold(boolean selectedBold) {
         this.mIsTabTextSelectedBold = selectedBold;
     }
 
-    void setIsTabTextBold(boolean bold) {
-        this.mIsTabTextBold = bold;
-    }
-
-    void setmDividerWidth(float width) {
+    void setDividerWidth(float width) {
         this.mDividerWidth = width;
     }
 
@@ -232,16 +228,17 @@ final class SlidingTabStrip extends LinearLayout {
     }
 
     /**
-     * Set the specified position text typeface.
+     * Set the specified position text typeface style.
      *
      * @param index The specified position.
-     * @param tf
+     * @param style
      */
-    private void setTabTextTypeface(int index, Typeface tf) {
+    private void setTabTextTypeface(int index, int style) {
         if (index < 0 || index >= getChildCount()) {
             return;
         }
-        getTextView(index).setTypeface(tf);
+        TextView text = getTextView(index);
+        text.setTypeface(Typeface.create(text.getTypeface(), style));
     }
 
     private boolean onlySelectedTabBold() {
@@ -257,13 +254,13 @@ final class SlidingTabStrip extends LinearLayout {
                 text.setTextColor(mTabTextColor);
                 text.setTextSize(TypedValue.COMPLEX_UNIT_PX, titleTextSize);
                 if (onlySelectedTabBold() && mLastSelectedPosition != -1) {
-                    setTabTextTypeface(mLastSelectedPosition, Typeface.defaultFromStyle(Typeface.NORMAL));
+                    setTabTextTypeface(mLastSelectedPosition, Typeface.NORMAL);
                 }
 
                 text.invalidate();
             } else {
                 if (onlySelectedTabBold() && mLastSelectedPosition != -1) {
-                    setTabTextTypeface(mLastSelectedPosition, Typeface.defaultFromStyle(Typeface.BOLD));
+                    setTabTextTypeface(mLastSelectedPosition, Typeface.BOLD);
                 }
             }
 
@@ -286,13 +283,13 @@ final class SlidingTabStrip extends LinearLayout {
                 text.setTextColor(colors[mSelectedPosition % colors.length]);
                 text.setTextSize(TypedValue.COMPLEX_UNIT_PX, selectedTabTextSize);
                 if (onlySelectedTabBold() && mLastSelectedPosition != -1) {
-                    setTabTextTypeface(mLastSelectedPosition, Typeface.defaultFromStyle(Typeface.BOLD));
+                    setTabTextTypeface(mLastSelectedPosition, Typeface.BOLD);
                 }
 
                 text.invalidate();
             } else {
                 if (onlySelectedTabBold() && mLastSelectedPosition != -1) {
-                    setTabTextTypeface(mLastSelectedPosition, Typeface.defaultFromStyle(Typeface.NORMAL));
+                    setTabTextTypeface(mLastSelectedPosition, Typeface.NORMAL);
                 }
             }
         }
@@ -362,8 +359,8 @@ final class SlidingTabStrip extends LinearLayout {
 
             // Set the selected tab to bold.
             if (onlySelectedTabBold()) {
-                setTabTextTypeface(mSelectedPosition, Typeface.defaultFromStyle(Typeface.BOLD));
-                setTabTextTypeface(mLastSelectedPosition, Typeface.defaultFromStyle(Typeface.NORMAL));
+                setTabTextTypeface(mSelectedPosition, Typeface.BOLD);
+                setTabTextTypeface(mLastSelectedPosition, Typeface.NORMAL);
             }
 
             if (mIsTabSelected) {
