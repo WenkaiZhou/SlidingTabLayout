@@ -78,6 +78,7 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
     private boolean mSmoothScroll;
 
     private ViewPager mViewPager;
+    private PagerAdapter mPagerAdapter;
     private SlidingTabStrip mSlidingTabStrip;
 
     private TabLayoutOnPageChangeListener mPageChangeListener;
@@ -198,10 +199,12 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
     }
 
     private void setPagerAdapter(PagerAdapter adapter) {
-        if (mViewPager.getAdapter() != null && mPagerAdapterObserver != null) {
+        if (mPagerAdapter != null && mPagerAdapterObserver != null) {
             // If we already have a PagerAdapter, unregister our observer
-            mViewPager.getAdapter().unregisterDataSetObserver(mPagerAdapterObserver);
+            mPagerAdapter.unregisterDataSetObserver(mPagerAdapterObserver);
         }
+
+        mPagerAdapter = adapter;
 
         if (adapter != null) {
             // Register our observer on the new adapter
