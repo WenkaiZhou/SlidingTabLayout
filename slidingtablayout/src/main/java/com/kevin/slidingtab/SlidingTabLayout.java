@@ -240,7 +240,7 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
                 view = LayoutInflater.from(this.getContext()).inflate(mTabLayoutRes, mSlidingTabStrip, false);
                 text = view.findViewById(R.id.sliding_tab_text);
                 image = view.findViewById(R.id.sliding_tab_image);
-                if (text != null) {
+                if (text != null && text.getTypeface() != null) {
                     mIsTabTextBold = text.getTypeface().isBold();
                     mSlidingTabStrip.setTabTextBold(mIsTabTextBold);
                 }
