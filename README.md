@@ -21,6 +21,14 @@
 
 如果您的项目使用 Gradle 构建, 只需要在您的`build.gradle`文件添加下面一行到 `dependencies` :
 
+**AndroidX**
+
+```
+compile 'com.kevin:slidingtablayout:2.0.0'
+```
+
+**Support**
+
 ```
 compile 'com.kevin:slidingtablayout:1.1.10'
 ```
