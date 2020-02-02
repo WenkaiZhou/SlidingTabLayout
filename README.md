@@ -30,7 +30,7 @@ compile 'com.kevin:slidingtablayout:2.0.1'
 **Support**
 
 ```
-compile 'com.kevin:slidingtablayout:1.1.10'
+compile 'com.kevin:slidingtablayout:1.2.0'
 ```
 
 ## 简单使用
