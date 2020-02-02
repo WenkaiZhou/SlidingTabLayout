@@ -332,8 +332,12 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
         mSlidingTabStrip.setCustomTabPalette(tabPalette);
     }
 
-    public SlidingTabStrip getSlidingTabStrip() {
+    private SlidingTabStrip getSlidingTabStrip() {
         return mSlidingTabStrip;
+    }
+
+    public View getTabAt(int index) {
+        return mSlidingTabStrip.getChildAt(index);
     }
 
     public void setOnTabCreatedListener(OnTabCreateListener listener) {
