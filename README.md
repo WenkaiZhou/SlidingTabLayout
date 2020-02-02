@@ -24,7 +24,7 @@
 **AndroidX**
 
 ```
-compile 'com.kevin:slidingtablayout:2.0.0'
+compile 'com.kevin:slidingtablayout:2.0.1'
 ```
 
 **Support**
