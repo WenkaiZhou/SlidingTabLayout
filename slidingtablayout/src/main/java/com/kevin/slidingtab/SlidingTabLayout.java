@@ -48,9 +48,9 @@ import androidx.viewpager.widget.ViewPager;
  * SlidingTabLayout
  *
  * @author zwenkai@foxmail.com, Created on 2018-09-29 14:24:57
- *          Major Function：<b>SlidingTabLayout</b>
- *          <p/>
- *          Note: If you modify this class please fill in the following content as a record.
+ * Major Function：<b>SlidingTabLayout</b>
+ * <p/>
+ * Note: If you modify this class please fill in the following content as a record.
  * @author mender，Modified Date Modify Content:
  */
 public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeObserver.OnGlobalLayoutListener {
@@ -134,7 +134,7 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
         this.mSlidingTabStrip.setIndicatorCreep(a.getBoolean(R.styleable.SlidingTabLayout_stl_tabIndicatorCreep, false));
         this.mSlidingTabStrip.setIndicatorHeight(a.getDimension(R.styleable.SlidingTabLayout_stl_tabIndicatorHeight, 0));
         this.mSlidingTabStrip.setIndicatorWidth(a.getDimension(R.styleable.SlidingTabLayout_stl_tabIndicatorWidth, 0));
-        this.mSlidingTabStrip.setIndicatorCornerRadius(a.getFloat(R.styleable.SlidingTabLayout_stl_tabIndicatorWidthRatio, 1.0f));
+        this.mSlidingTabStrip.setIndicatorWidthRatio(a.getFloat(R.styleable.SlidingTabLayout_stl_tabIndicatorWidthRatio, 1.0f));
         this.mSlidingTabStrip.setIndicatorColor(a.getColor(R.styleable.SlidingTabLayout_stl_tabIndicatorColor, Color.TRANSPARENT));
         this.mSlidingTabStrip.setIndicatorDrawable(a.getDrawable(R.styleable.SlidingTabLayout_stl_tabIndicator));
         this.mSlidingTabStrip.setIndicatorCornerRadius(a.getDimension(R.styleable.SlidingTabLayout_stl_tabIndicatorCornerRadius, 0));

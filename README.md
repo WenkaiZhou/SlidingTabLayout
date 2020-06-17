@@ -24,13 +24,13 @@
 **AndroidX**
 
 ```
-compile 'com.kevin:slidingtablayout:2.0.1'
+compile 'com.kevin:slidingtablayout:2.0.2'
 ```
 
 **Support**
 
 ```
-compile 'com.kevin:slidingtablayout:1.2.0'
+compile 'com.kevin:slidingtablayout:1.2.1'
 ```
 
 ## 简单使用
