@@ -133,7 +133,7 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
         this.mSlidingTabStrip.setIndicatorCreep(a.getBoolean(R.styleable.SlidingTabLayout_stl_tabIndicatorCreep, false));
         this.mSlidingTabStrip.setIndicatorHeight(a.getDimension(R.styleable.SlidingTabLayout_stl_tabIndicatorHeight, 0));
         this.mSlidingTabStrip.setIndicatorWidth(a.getDimension(R.styleable.SlidingTabLayout_stl_tabIndicatorWidth, 0));
-        this.mSlidingTabStrip.setIndicatorCornerRadius(a.getFloat(R.styleable.SlidingTabLayout_stl_tabIndicatorWidthRatio, 1.0f));
+        this.mSlidingTabStrip.setIndicatorWidthRatio(a.getFloat(R.styleable.SlidingTabLayout_stl_tabIndicatorWidthRatio, 1.0f));
         this.mSlidingTabStrip.setIndicatorColor(a.getColor(R.styleable.SlidingTabLayout_stl_tabIndicatorColor, Color.TRANSPARENT));
         this.mSlidingTabStrip.setIndicatorDrawable(a.getDrawable(R.styleable.SlidingTabLayout_stl_tabIndicator));
         this.mSlidingTabStrip.setIndicatorCornerRadius(a.getDimension(R.styleable.SlidingTabLayout_stl_tabIndicatorCornerRadius, 0));
