@@ -92,6 +92,7 @@ final class SlidingTabStrip extends LinearLayout {
         this.mTabTextColor = Color.GRAY;
         this.mLastSelectedPosition = -1;
         this.mSelectedPosition = 0;
+        this.mIsTabSelected = true;
         this.mLeftInterpolator = new AccelerateInterpolator();
         this.mRightInterpolator = new DecelerateInterpolator();
 
@@ -213,6 +214,20 @@ final class SlidingTabStrip extends LinearLayout {
         } else {
             text.setTextSize(TypedValue.COMPLEX_UNIT_PX, size);
         }
+    }
+
+    /**
+     * Changes the selection state of the tab view.
+     *
+     * @param index    The specified position.
+     * @param selected true if the view must be selected, false otherwise
+     */
+    private void setTabTextSelected(int index, boolean selected) {
+        if (index < 0 || index >= getChildCount()) {
+            return;
+        }
+        final TextView text = getTextView(index);
+        text.setSelected(selected);
     }
 
     /**
@@ -367,6 +382,9 @@ final class SlidingTabStrip extends LinearLayout {
             if (mIsTabSelected) {
                 setTabTextColor(mSelectedPosition, tabPalette.getTextColor(mSelectedPosition));
                 setTabTextColor(mLastSelectedPosition, mTabTextColor);
+
+                setTabTextSelected(mSelectedPosition, true);
+                setTabTextSelected(mLastSelectedPosition, false);
             }
 
             mLastSelectedPosition = mSelectedPosition;
