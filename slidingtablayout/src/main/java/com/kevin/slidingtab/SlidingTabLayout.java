@@ -229,7 +229,8 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
             getViewTreeObserver().addOnGlobalLayoutListener(this);
         }
 
-        mSlidingTabStrip.removeAllViews();
+        mSlidingTabStrip.reset();
+
         TabClickListener listener = new TabClickListener(this);
 
         for (int i = 0; i < adapter.getCount(); i++) {

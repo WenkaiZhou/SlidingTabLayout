@@ -37,9 +37,9 @@ import androidx.annotation.ColorInt;
  * SlidingTabStrip
  *
  * @author zwenkai@foxmail.com, Created on 2018-09-29 14:26:35
- *          Major Function：<b>SlidingTabStrip</b>
- *          <p/>
- *          Note: If you modify this class please fill in the following content as a record.
+ * Major Function：<b>SlidingTabStrip</b>
+ * <p/>
+ * Note: If you modify this class please fill in the following content as a record.
  * @author mender，Modified Date Modify Content:
  */
 final class SlidingTabStrip extends LinearLayout {
@@ -517,6 +517,13 @@ final class SlidingTabStrip extends LinearLayout {
             }
             mOnColorChangeListener.onColorChanged(firstPageTextColor);
         }
+    }
+
+    void reset() {
+        this.removeAllViews();
+        this.mLastSelectedPosition = -1;
+        this.mSelectedPosition = 0;
+        this.mIsTabSelected = true;
     }
 
     class SimpleTabPalette implements SlidingTabLayout.TabPalette {
