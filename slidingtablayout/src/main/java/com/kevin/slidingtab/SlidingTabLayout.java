@@ -273,6 +273,15 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
             mSlidingTabStrip.addView(view);
         }
 
+        // Make sure we reflect the currently set ViewPager item
+        if (mPagerAdapter != null && mPagerAdapter.getCount() > 0) {
+            final int curItem = mViewPager.getCurrentItem();
+            if (curItem != mSlidingTabStrip.getSelectedPosition()) {
+                mSlidingTabStrip.setTabSelected(true);
+                mSlidingTabStrip.setSelectedPosition(curItem);
+            }
+        }
+
         if (mOnTabCreateListener != null) {
             mOnTabCreateListener.onCreated();
         }

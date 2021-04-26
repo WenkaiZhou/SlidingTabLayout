@@ -315,6 +315,10 @@ final class SlidingTabStrip extends LinearLayout {
         this.mIsTabTextBold = tabTextBold;
     }
 
+    public int getSelectedPosition() {
+        return mSelectedPosition;
+    }
+
     void setSelectedPosition(int position) {
         this.mSelectedPosition = position;
         this.invalidate();
