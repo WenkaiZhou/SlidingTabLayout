@@ -38,11 +38,8 @@ android {
 }
 
 dependencies {
-    compileOnly 'androidx.appcompat:appcompat:1.1.0'
+    compileOnly 'androidx.appcompat:appcompat:1.2.0'
 }
 
 // -------
-ext {
-    kevinSourceDocFiles = [rootProject.file('gradle/android-sources-docs.gradle')]
-}
-apply from: rootProject.file('gradle/gradle-mvn-push.gradle')
+apply from: rootProject.file('gradle/maven_publish.gradle')
