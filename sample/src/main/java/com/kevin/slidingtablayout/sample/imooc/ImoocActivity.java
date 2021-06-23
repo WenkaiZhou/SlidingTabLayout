@@ -12,10 +12,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
-import com.jaeger.library.StatusBarUtil;
 import com.kevin.slidingtab.SlidingTabLayout;
 import com.kevin.slidingtablayout.sample.MainFragment;
 import com.kevin.slidingtablayout.sample.R;
+import com.kevin.slidingtablayout.sample.util.StatusBarUtil;
 
 import java.util.ArrayList;
 
