@@ -24,10 +24,10 @@
 **AndroidX**
 
 ```
-compile 'com.kevin:slidingtablayout:2.0.5'
+compile 'com.zwenkai:slidingtablayout:2.0.5'
 ```
 
-**Support**
+**Support**[不再维护]
 
 ```
 compile 'com.kevin:slidingtablayout:1.2.1'
