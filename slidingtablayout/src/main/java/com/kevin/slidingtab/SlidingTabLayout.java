@@ -401,7 +401,6 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
         } else {
             text = view.findViewById(R.id.sliding_tab_text);
         }
-        text.setSingleLine(true);
         text.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
         text.setTextSize(TypedValue.COMPLEX_UNIT_PX, mTabTextSize);
         text.setTextColor(mTabTextColor);
