@@ -24,7 +24,7 @@
 **AndroidX**
 
 ```
-compile 'com.zwenkai:slidingtablayout:2.0.5'
+compile 'com.zwenkai:slidingtablayout:2.0.6'
 ```
 
 **Support**[不再维护]
