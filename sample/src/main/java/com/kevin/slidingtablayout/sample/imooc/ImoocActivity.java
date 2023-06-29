@@ -22,7 +22,7 @@ import java.util.ArrayList;
 /**
  * ImoocActivity
  *
- * @author zhouwenkai@baidu.com, Created on 2019-04-27 17:07:25
+ * @author zwenkai@foxmail.com, Created on 2019-04-27 17:07:25
  * Major Function：<b></b>
  * <p/>
  * Note: If you modify this class please fill in the following content as a record.

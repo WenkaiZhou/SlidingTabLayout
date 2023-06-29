@@ -16,12 +16,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 33
 
     defaultConfig {
         applicationId "com.kevin.slidingtablayout.sample"
         minSdkVersion 14
-        targetSdkVersion 31
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
 
@@ -46,6 +46,7 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.5.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     implementation project(':slidingtablayout')
+    implementation "androidx.viewpager2:viewpager2:1.0.0"
 
     implementation 'com.zwenkai:delegationadapter:2.0.8'
     implementation 'com.zwenkai:delegationadapter-extras:2.0.8'

@@ -78,6 +78,7 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
     private int mTabSelectedTextSize;
     private boolean mSmoothScroll;
 
+    @Nullable
     private ViewPager mViewPager;
     private PagerAdapter mPagerAdapter;
     private SlidingTabStrip mSlidingTabStrip;
@@ -112,7 +113,6 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
         this.mRightPadding = a.getDimension(R.styleable.SlidingTabLayout_stl_rightPadding, 0);
         this.mSmoothScroll = a.getBoolean(R.styleable.SlidingTabLayout_stl_smoothScroll, true);
         this.mTabLayoutRes = a.getResourceId(R.styleable.SlidingTabLayout_stl_tabLayout, 0);
-        this.mSmoothScroll = a.getBoolean(R.styleable.SlidingTabLayout_stl_smoothScroll, true);
         mTabPaddingStart = mTabPaddingTop = mTabPaddingEnd = mTabPaddingBottom = a.getDimensionPixelSize(R.styleable.SlidingTabLayout_stl_tabPadding, 0);
         this.mTabPaddingStart = a.getDimensionPixelSize(R.styleable.SlidingTabLayout_stl_tabPaddingStart, mTabPaddingStart);
         this.mTabPaddingTop = a.getDimensionPixelSize(R.styleable.SlidingTabLayout_stl_tabPaddingTop, mTabPaddingTop);
@@ -188,6 +188,7 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
         }
     }
 
+    @Nullable
     public ViewPager getViewPager() {
         return mViewPager;
     }
@@ -197,6 +198,18 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
             this.mMode = mode;
             setupWithViewPager(mViewPager);
         }
+    }
+
+    @TabMode int getTabMode() {
+        return mMode;
+    }
+
+    int getTabLayoutRes() {
+        return mTabLayoutRes;
+    }
+
+    void setTabTextBold(boolean mIsTabTextBold) {
+        this.mIsTabTextBold = mIsTabTextBold;
     }
 
     private void setPagerAdapter(PagerAdapter adapter) {
@@ -220,6 +233,9 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
     }
 
     private void populateFromPagerAdapter() {
+        if (mViewPager == null) {
+            return;
+        }
         PagerAdapter adapter = mViewPager.getAdapter();
         if (adapter == null) {
             return;
@@ -269,12 +285,12 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
 
             text.setText(adapter.getPageTitle(i));
             view.setOnClickListener(listener);
-            setLayoutParams(view, i);
+            setLayoutParams(view, i, adapter.getCount());
             mSlidingTabStrip.addView(view);
         }
 
         // Make sure we reflect the currently set ViewPager item
-        if (mPagerAdapter != null && mPagerAdapter.getCount() > 0) {
+        if (mViewPager!= null && mPagerAdapter != null && mPagerAdapter.getCount() > 0) {
             final int curItem = mViewPager.getCurrentItem();
             if (curItem != mSlidingTabStrip.getSelectedPosition()) {
                 mSlidingTabStrip.setTabSelected(true);
@@ -311,13 +327,19 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
             this.getViewTreeObserver().removeGlobalOnLayoutListener(this);
         }
 
-        for (int i = 0; i < mSlidingTabStrip.getChildCount(); i++) {
-            setLayoutParams(mSlidingTabStrip.getChildAt(i), i);
+        if (mViewPager != null && mViewPager.getAdapter() != null) {
+            for (int i = 0; i < mSlidingTabStrip.getChildCount(); i++) {
+                setLayoutParams(mSlidingTabStrip.getChildAt(i), i, mViewPager.getAdapter().getCount());
+            }
         }
     }
 
     public void setSmoothScroll(boolean smoothScroll) {
         this.mSmoothScroll = smoothScroll;
+    }
+
+    public boolean getSmoothScroll() {
+        return mSmoothScroll;
     }
 
     public void setTextColor(@ColorInt int color) {
@@ -343,7 +365,7 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
         mSlidingTabStrip.setCustomTabPalette(tabPalette);
     }
 
-    private SlidingTabStrip getSlidingTabStrip() {
+    SlidingTabStrip getSlidingTabStrip() {
         return mSlidingTabStrip;
     }
 
@@ -353,6 +375,10 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
 
     public void setOnTabCreatedListener(OnTabCreateListener listener) {
         this.mOnTabCreateListener = listener;
+    }
+
+    public OnTabCreateListener getOnTabCreatedListener() {
+        return mOnTabCreateListener;
     }
 
     /**
@@ -393,7 +419,7 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
         mSlidingTabStrip.setOnColorChangeListener(listener);
     }
 
-    private void setLayoutParams(View view, int position) {
+    void setLayoutParams(View view, int position, int count) {
         view.setPadding(mTabPaddingStart, mTabPaddingTop, mTabPaddingEnd, mTabPaddingBottom);
         TextView text;
         if (view instanceof TextView) {
@@ -405,13 +431,13 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
         text.setTextSize(TypedValue.COMPLEX_UNIT_PX, mTabTextSize);
         text.setTextColor(mTabTextColor);
         text.setTypeface(Typeface.create(text.getTypeface(), mIsTabTextBold ? Typeface.BOLD : Typeface.NORMAL));
-        int tabWidth = mMode == MODE_FIXED ? getWidth() / mViewPager.getAdapter().getCount() : LinearLayout.LayoutParams.WRAP_CONTENT;
+        int tabWidth = mMode == MODE_FIXED ? getWidth() / count : LinearLayout.LayoutParams.WRAP_CONTENT;
         view.setLayoutParams(new LinearLayout.LayoutParams(tabWidth, LinearLayout.LayoutParams.WRAP_CONTENT));
 
         if (position == 0 && mLeftPadding > 0) {
             view.setPadding((int) mLeftPadding + mTabPaddingStart, mTabPaddingTop, mTabPaddingEnd, mTabPaddingBottom);
         }
-        if (position == mViewPager.getAdapter().getCount() - 1 && mRightPadding > 0) {
+        if (position == count - 1 && mRightPadding > 0) {
             view.setPadding(mTabPaddingStart, mTabPaddingTop, (int) mRightPadding + mTabPaddingEnd, mTabPaddingBottom);
         }
     }
@@ -436,7 +462,7 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
          */
         @Override
         public void onPageScrollStateChanged(int state) {
-            if (state == ViewPager.SCROLL_STATE_IDLE) {
+            if (state != ViewPager.SCROLL_STATE_IDLE) {
                 mTabLayout.getSlidingTabStrip().setTabSelected(false);
             }
         }
@@ -545,11 +571,14 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewTreeOb
                         mTabLayout.getOnTabClickListener().onClick(i);
                     }
 
-                    if (mTabLayout.getViewPager().getCurrentItem() == i && mTabLayout.getOnSelectedTabClickListener() != null) {
+                    ViewPager viewPager = mTabLayout.getViewPager();
+                    if (viewPager!= null && viewPager.getCurrentItem() == i && mTabLayout.getOnSelectedTabClickListener() != null) {
                         mTabLayout.getOnSelectedTabClickListener().onClick(i);
                     }
 
-                    mTabLayout.getViewPager().setCurrentItem(i, mSmoothScroll);
+                    if (viewPager != null) {
+                        viewPager.setCurrentItem(i, mSmoothScroll);
+                    }
                     break;
                 }
             }

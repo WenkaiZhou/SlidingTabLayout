@@ -3,14 +3,15 @@ package com.kevin.slidingtablayout.sample.missfresh;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.ViewPager;
+import androidx.lifecycle.Lifecycle;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.kevin.slidingtab.SlidingTabLayout;
+import com.kevin.slidingtab.SlidingTabLayoutMediator;
 import com.kevin.slidingtablayout.sample.MainFragment;
 import com.kevin.slidingtablayout.sample.R;
 
@@ -19,14 +20,14 @@ import java.util.ArrayList;
 /**
  * MissFreshActivity
  *
- * @author zhouwenkai@baidu.com, Created on 2019-04-27 17:51:30
+ * @author zwenkai@foxmail.com, Created on 2019-04-27 17:51:30
  * Major Function：<b></b>
  * <p/>
  * Note: If you modify this class please fill in the following content as a record.
  * @author mender，Modified Date Modify Content:
  */
 public class MissFreshActivity extends AppCompatActivity {
-    private ViewPager mViewPager;
+    private ViewPager2 mViewPager;
     private SlidingTabLayout mTabLayout;
 
     @Override
@@ -39,10 +40,10 @@ public class MissFreshActivity extends AppCompatActivity {
 
         initTabListener();
 
-        Adapter adapter = new Adapter(getSupportFragmentManager());
+        Adapter adapter = new Adapter(getSupportFragmentManager(), getLifecycle());
         mViewPager.setAdapter(adapter);
 
-        mTabLayout.setupWithViewPager(mViewPager);
+        new SlidingTabLayoutMediator(mTabLayout, mViewPager).attach();
     }
 
     private void initTabListener() {
@@ -68,13 +69,13 @@ public class MissFreshActivity extends AppCompatActivity {
         });
     }
 
-    static class Adapter extends FragmentPagerAdapter {
+    static class Adapter extends SlidingTabLayoutMediator.SlidingTabPageAdapter {
 
         ArrayList<String> titles = new ArrayList<>();
         private ArrayList<Fragment> fragments = new ArrayList<>();
 
-        public Adapter(FragmentManager fm) {
-            super(fm);
+        public Adapter(FragmentManager fm, Lifecycle lifecycle) {
+            super(fm, lifecycle);
 
             titles.add("热卖");
             titles.add("半价菜场");
@@ -92,19 +93,19 @@ public class MissFreshActivity extends AppCompatActivity {
         }
 
         @Override
-        public Fragment getItem(int i) {
-            return fragments.get(i);
-        }
-
-        @Override
-        public int getCount() {
-            return fragments.size();
-        }
-
-        @Nullable
-        @Override
         public CharSequence getPageTitle(int position) {
             return titles.get(position);
+        }
+
+        @NonNull
+        @Override
+        public Fragment createFragment(int position) {
+            return fragments.get(position);
+        }
+
+        @Override
+        public int getItemCount() {
+            return fragments.size();
         }
     }
 }
