@@ -40,7 +40,7 @@
     <com.kevin.slidingtab.SlidingTabLayout
         android:id="@+id/tab_layout"
         android:layout_width="0dp"
-        android:layout_height="60dp"
+        android:layout_height="32dp"
         android:layout_marginTop="8dp"
         app:stl_tabIndicatorGravity="bottom"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -50,16 +50,16 @@
         app:stl_tabIndicatorCreep="true"
         app:stl_tabIndicatorHeight="4dp"
         app:stl_tabIndicatorWidth="16dp"
-        app:stl_tabGravity="bottom"
+        app:stl_tabGravity="center"
         app:stl_tabLayout="@layout/home_table"
         app:stl_tabTextBold="true"
+        app:stl_tabPaddingBottom="5dp"
         app:stl_tabTextColor="#333333" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

@@ -5,8 +5,10 @@ import static androidx.viewpager2.widget.ViewPager2.SCROLL_STATE_IDLE;
 import static com.kevin.slidingtab.SlidingTabLayout.MODE_FIXED;
 
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -31,7 +33,7 @@ import java.lang.ref.WeakReference;
  * Note: If you modify this class please fill in the following content as a record.
  * @author mender，Modified Date Modify Content:
  */
-public class SlidingTabLayoutMediator {
+public class SlidingTabLayoutMediator implements ViewTreeObserver.OnGlobalLayoutListener {
 
     @NonNull
     private final SlidingTabLayout tabLayout;
@@ -134,7 +136,7 @@ public class SlidingTabLayoutMediator {
         }
 
         if (tabLayout.getTabMode() == MODE_FIXED) {
-            tabLayout.getViewTreeObserver().addOnGlobalLayoutListener(tabLayout);
+            tabLayout.getViewTreeObserver().addOnGlobalLayoutListener(this);
         }
 
         tabLayout.getSlidingTabStrip().reset();
@@ -193,6 +195,21 @@ public class SlidingTabLayoutMediator {
 
         if (tabLayout.getOnTabCreatedListener() != null) {
             tabLayout.getOnTabCreatedListener().onCreated();
+        }
+    }
+
+    @Override
+    public void onGlobalLayout() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            tabLayout.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+        } else {
+            tabLayout.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+        }
+
+        if (viewPager.getAdapter() != null) {
+            for (int i = 0; i < tabLayout.getSlidingTabStrip().getChildCount(); i++) {
+                tabLayout.setLayoutParams(tabLayout.getSlidingTabStrip().getChildAt(i), i, adapter.getItemCount());
+            }
         }
     }
 
