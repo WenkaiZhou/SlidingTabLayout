@@ -245,39 +245,39 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
         for (int i = 0; i < adapter.getCount(); i++) {
             View view = null;
-            TextView text = null;
-            ImageView image = null;
+            TextView textView = null;
+            ImageView iconView = null;
 
             if (mTabLayoutRes != 0) {
                 view = LayoutInflater.from(this.getContext()).inflate(mTabLayoutRes, mSlidingTabStrip, false);
-                text = view.findViewById(R.id.sliding_tab_text);
-                image = view.findViewById(R.id.sliding_tab_image);
-                if (text != null && text.getTypeface() != null) {
-                    mIsTabTextBold = text.getTypeface().isBold();
+                textView = view.findViewById(R.id.sliding_tab_text);
+                iconView = view.findViewById(R.id.sliding_tab_icon);
+                if (textView != null && textView.getTypeface() != null) {
+                    mIsTabTextBold = textView.getTypeface().isBold();
                     mSlidingTabStrip.setTabTextBold(mIsTabTextBold);
                 }
 
-                if (adapter instanceof SlidingTabPageAdapter && image != null) {
+                if (adapter instanceof SlidingTabPageAdapter && iconView != null) {
                     Drawable drawable = ((SlidingTabPageAdapter) adapter).getDrawable(i);
                     if (drawable != null) {
-                        image.setImageDrawable(drawable);
+                        iconView.setImageDrawable(drawable);
                     } else {
-                        image.setVisibility(GONE);
+                        iconView.setVisibility(GONE);
                     }
                 }
             }
 
-            if (text == null && view instanceof TextView) {
-                text = (TextView) view;
+            if (textView == null && view instanceof TextView) {
+                textView = (TextView) view;
             }
-            if (text == null) {
-                text = new TextView(getContext());
+            if (textView == null) {
+                textView = new TextView(getContext());
             }
             if (view == null) {
-                view = text;
+                view = textView;
             }
 
-            text.setText(adapter.getPageTitle(i));
+            textView.setText(adapter.getPageTitle(i));
             view.setOnClickListener(listener);
             setLayoutParams(view, i, adapter.getCount());
             mSlidingTabStrip.addView(view);

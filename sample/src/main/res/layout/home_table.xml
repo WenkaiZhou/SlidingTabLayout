@@ -16,20 +16,21 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="18.0dip"
+    android:layout_height="wrap_content"
     android:gravity="center"
     android:orientation="horizontal">
 
     <ImageView
-        android:id="@id/sliding_tab_image"
-        android:layout_width="18.0dip"
-        android:layout_height="18.0dip"
-        android:layout_marginRight="2.0dip"
+        android:id="@id/sliding_tab_icon"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginRight="2dp"
         android:src="@mipmap/ic_launcher" />
 
     <TextView
         android:id="@id/sliding_tab_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:includeFontPadding="false"
         tools:text="1111" />
 </LinearLayout>

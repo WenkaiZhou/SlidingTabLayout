@@ -133,7 +133,7 @@ public class SlidingTabLayoutMediator {
 
         tabLayout.getSlidingTabStrip().reset();
 
-        TabClickListener listener = new TabClickListener(tabLayout, viewPager);
+        TabClickListener listener = new TabClickListener(tabLayout);
 
         for (int i = 0; i < adapter.getItemCount(); i++) {
             View view = null;
@@ -143,7 +143,7 @@ public class SlidingTabLayoutMediator {
             if (tabLayout.getTabLayoutRes() != 0) {
                 view = LayoutInflater.from(tabLayout.getContext()).inflate(tabLayout.getTabLayoutRes(), tabLayout.getSlidingTabStrip(), false);
                 text = view.findViewById(R.id.sliding_tab_text);
-                image = view.findViewById(R.id.sliding_tab_image);
+                image = view.findViewById(R.id.sliding_tab_icon);
                 if (text != null && text.getTypeface() != null) {
                     boolean isTabTextBold = text.getTypeface().isBold();
                     tabLayout.getSlidingTabStrip().setTabTextBold(isTabTextBold);
@@ -181,7 +181,7 @@ public class SlidingTabLayoutMediator {
             final int curItem = viewPager.getCurrentItem();
             if (curItem != tabLayout.getSlidingTabStrip().getSelectedPosition()) {
                 tabLayout.getSlidingTabStrip().setTabSelected(true);
-               tabLayout.getSlidingTabStrip().setSelectedPosition(curItem);
+                tabLayout.getSlidingTabStrip().setSelectedPosition(curItem);
             }
         }
 
@@ -305,7 +305,7 @@ public class SlidingTabLayoutMediator {
         }
 
         public SlidingTabPageAdapter(@NonNull FragmentManager fragmentManager,
-                                    @NonNull Lifecycle lifecycle) {
+                                     @NonNull Lifecycle lifecycle) {
             super(fragmentManager, lifecycle);
         }
 
@@ -326,7 +326,7 @@ public class SlidingTabLayoutMediator {
     class TabClickListener implements View.OnClickListener {
         private final SlidingTabLayout mTabLayout;
 
-        TabClickListener(SlidingTabLayout tabLayout, ViewPager2 viewPager) {
+        TabClickListener(SlidingTabLayout tabLayout) {
             this.mTabLayout = tabLayout;
         }
 

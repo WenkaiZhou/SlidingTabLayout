@@ -14,6 +14,6 @@
   ~ limitations under the License.
   -->
 <resources>
+    <item type="id" name="sliding_tab_icon"/>
     <item type="id" name="sliding_tab_text"/>
-    <item type="id" name="sliding_tab_image"/>
 </resources>
