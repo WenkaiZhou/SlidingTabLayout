@@ -203,7 +203,7 @@ final class SlidingTabStrip extends LinearLayout {
             animator.setDuration(ANIMATION_DURATION);
             animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 public void onAnimationUpdate(ValueAnimator paramAnonymousValueAnimator) {
-                    float f = ((Float) paramAnonymousValueAnimator.getAnimatedValue()).floatValue();
+                    float f = (Float) paramAnonymousValueAnimator.getAnimatedValue();
                     text.setTextSize(TypedValue.COMPLEX_UNIT_PX, f);
                     if (f == size) {
                         animator.removeUpdateListener(this);
@@ -530,7 +530,7 @@ final class SlidingTabStrip extends LinearLayout {
         this.mIsTabSelected = true;
     }
 
-    class SimpleTabPalette implements SlidingTabLayout.TabPalette {
+    private static class SimpleTabPalette implements SlidingTabLayout.TabPalette {
         private int[] mTextColors;
         private int[] mDividerColors;
 

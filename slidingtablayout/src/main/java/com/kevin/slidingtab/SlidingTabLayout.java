@@ -537,7 +537,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
         return Math.round(getResources().getDisplayMetrics().density * dps);
     }
 
-    class TabClickListener implements View.OnClickListener {
+    private class TabClickListener implements View.OnClickListener {
         private final SlidingTabLayout mTabLayout;
 
         TabClickListener(SlidingTabLayout tabLayout) {
