@@ -348,12 +348,12 @@ final class SlidingTabStrip extends LinearLayout {
      * @return
      */
     private TextView getTextView(int index) {
-        View text = getChildAt(index);
-        if (!(text instanceof TextView)) {
-            text = text.findViewById(R.id.sliding_tab_text);
+        View view = getChildAt(index);
+        if (!(view instanceof TextView)) {
+            view = view.findViewById(R.id.sliding_tab_text);
         }
 
-        return (TextView) text;
+        return (TextView) view;
     }
 
     void setOnColorChangeListener(SlidingTabLayout.OnColorChangeListener listener) {
