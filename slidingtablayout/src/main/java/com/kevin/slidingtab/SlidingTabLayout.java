@@ -445,9 +445,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
          */
         @Override
         public void onPageScrollStateChanged(int state) {
-            if (state != ViewPager.SCROLL_STATE_IDLE) {
-                mTabLayout.getSlidingTabStrip().setTabSelected(false);
-            }
+            mTabLayout.getSlidingTabStrip().setTabSelected(state == ViewPager.SCROLL_STATE_IDLE);
         }
 
         /**

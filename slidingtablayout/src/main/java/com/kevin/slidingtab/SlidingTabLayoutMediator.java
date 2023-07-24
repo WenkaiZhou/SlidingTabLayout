@@ -209,9 +209,7 @@ public class SlidingTabLayoutMediator {
         @Override
         public void onPageScrollStateChanged(final int state) {
             SlidingTabLayout tabLayout = tabLayoutRef.get();
-            if (state != SCROLL_STATE_IDLE) {
-                tabLayout.getSlidingTabStrip().setTabSelected(false);
-            }
+            tabLayout.getSlidingTabStrip().setTabSelected(state == SCROLL_STATE_IDLE);
         }
 
         @Override
