@@ -2,6 +2,10 @@
 
 该项目是博客[《ViewPager导航的一些想法》](https://blog.csdn.net/xuehuayous/article/details/83178601)的示例。
 
+[![License](https://img.shields.io/badge/License%20-Apache%202-337ab7.svg?style=flat-square)](https://www.apache.org/licenses/LICENSE-2.0)
+[![MavenCentral](https://img.shields.io/badge/%20MavenCentral%20-2.0.8-5bc0de.svg?style=flat-square)](https://repo1.maven.org/maven2/com/zwenkai/slidingtablayout)
+[![MinSdk](https://img.shields.io/badge/%20MinSdk%20-%2014%2B%20-f0ad4e.svg?style=flat-square)](https://android-arsenal.com/api?level=14)
+
 ## 示例截图
 
 <div>
@@ -24,7 +28,7 @@
 **AndroidX**
 
 ```
-compile 'com.zwenkai:slidingtablayout:2.0.6'
+compile 'com.zwenkai:slidingtablayout:2.1.0'
 ```
 
 **Support**[不再维护]
@@ -48,11 +52,21 @@ compile 'com.kevin:slidingtablayout:1.2.1'
 ```
 ### 在代码中配置
 
-```
-SlidingTabLayout tabLayout = findViewById(R.id.sliding_tab);
-ViewPager viewPager = findViewById(R.id.view_pager);
-tabLayout.setViewPager(viewPager);
-```
+1. 配合ViewPager使用
+
+    ```Java
+    SlidingTabLayout tabLayout = findViewById(R.id.sliding_tab);
+    ViewPager viewPager = findViewById(R.id.view_pager);
+    tabLayout.setViewPager(viewPager);
+    ```
+
+2. 配合ViewPager2使用
+
+    ```Java
+    SlidingTabLayout tabLayout = findViewById(R.id.sliding_tab);
+    ViewPager2 viewPager = findViewById(R.id.view_pager);
+    new SlidingTabLayoutMediator(tabLayout, viewPager).attach();
+    ```
 
 ## 更多配置
 
