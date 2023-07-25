@@ -3,7 +3,7 @@
 该项目是博客[《ViewPager导航的一些想法》](https://blog.csdn.net/xuehuayous/article/details/83178601)的示例。
 
 [![License](https://img.shields.io/badge/License%20-Apache%202-337ab7.svg?style=flat-square)](https://www.apache.org/licenses/LICENSE-2.0)
-[![MavenCentral](https://img.shields.io/badge/%20MavenCentral%20-2.1.0-5bc0de.svg?style=flat-square)](https://repo1.maven.org/maven2/com/zwenkai/slidingtablayout)
+[![MavenCentral](https://img.shields.io/badge/%20MavenCentral%20-2.1.1-5bc0de.svg?style=flat-square)](https://repo1.maven.org/maven2/com/zwenkai/slidingtablayout)
 [![MinSdk](https://img.shields.io/badge/%20MinSdk%20-%2014%2B%20-f0ad4e.svg?style=flat-square)](https://android-arsenal.com/api?level=14)
 
 ## 示例截图
@@ -28,7 +28,7 @@
 **AndroidX**
 
 ```
-compile 'com.zwenkai:slidingtablayout:2.1.0'
+compile 'com.zwenkai:slidingtablayout:2.1.1'
 ```
 
 **Support**[不再维护]
@@ -65,6 +65,7 @@ compile 'com.kevin:slidingtablayout:1.2.1'
     ```Java
     SlidingTabLayout tabLayout = findViewById(R.id.sliding_tab);
     ViewPager2 viewPager = findViewById(R.id.view_pager);
+    // ... ...
     new SlidingTabLayoutMediator(tabLayout, viewPager).attach();
     ```
 
