@@ -20,7 +20,7 @@ import java.lang.ref.WeakReference
  * SlidingTabLayoutMediator
  *
  * @author zwenkai@foxmail.com, Created on 2023-06-29 13:36:47
- * Major Function：**A mediator to link a TabLayout with a ViewPager2.**
+ * Major Function：<b>A mediator to link a TabLayout with a ViewPager2.</b>
  *
  *
  * Note: If you modify this class please fill in the following content as a record.

@@ -38,7 +38,7 @@ import com.kevin.slidingtab.SlidingTabLayout.TabPalette
  * SlidingTabStrip
  *
  * @author zwenkai@foxmail.com, Created on 2018-09-29 14:26:35
- * Major Function：**SlidingTabStrip**
+ * Major Function：<b>SlidingTabStrip</b>
  *
  *
  * Note: If you modify this class please fill in the following content as a record.
