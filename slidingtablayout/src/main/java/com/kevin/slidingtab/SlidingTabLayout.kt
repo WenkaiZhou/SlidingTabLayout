@@ -39,7 +39,6 @@ import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager.widget.ViewPager.OnAdapterChangeListener
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
-import kotlin.math.roundToInt
 
 /**
  * SlidingTabLayout
@@ -51,7 +50,7 @@ import kotlin.math.roundToInt
  * Note: If you modify this class please fill in the following content as a record.
  * @author mender，Modified Date Modify Content:
  */
-class SlidingTabLayout @JvmOverloads constructor(
+open class SlidingTabLayout @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
@@ -71,8 +70,8 @@ class SlidingTabLayout @JvmOverloads constructor(
     private var tabPaddingBottom: Int
     private var tabTextColor: Int
     private var selectedTabTextColor: Int
-    private val tabTextSize: Int
-    private val tabSelectedTextSize: Int
+    private var tabTextSize: Float
+    private var tabSelectedTextSize: Float
     private var smoothScroll: Boolean
 
     private var viewPager: ViewPager? = null
@@ -112,11 +111,9 @@ class SlidingTabLayout @JvmOverloads constructor(
         tabPaddingBottom = a.getDimensionPixelSize(
             R.styleable.SlidingTabLayout_stl_tabPaddingBottom, tabPaddingBottom
         )
-        tabTextSize =
-            a.getDimensionPixelSize(R.styleable.SlidingTabLayout_stl_tabTextSize, dpToPx(16))
-        tabSelectedTextSize = a.getDimensionPixelSize(
-            R.styleable.SlidingTabLayout_stl_tabSelectedTextSize, tabTextSize
-        )
+        tabTextSize = a.getDimension(R.styleable.SlidingTabLayout_stl_tabTextSize, dpToPx(16))
+        tabSelectedTextSize =
+            a.getDimension(R.styleable.SlidingTabLayout_stl_tabSelectedTextSize, tabTextSize)
         tabTextColor = a.getColor(R.styleable.SlidingTabLayout_stl_tabTextColor, Color.GRAY)
         selectedTabTextColor =
             a.getColor(R.styleable.SlidingTabLayout_stl_tabSelectedTextColor, Color.DKGRAY)
@@ -125,8 +122,8 @@ class SlidingTabLayout @JvmOverloads constructor(
             a.getInt(R.styleable.SlidingTabLayout_stl_tabGravity, Gravity.CENTER_VERTICAL)
         slidingTabStrip.setLeftPadding(leftPadding)
         slidingTabStrip.setRightPadding(rightPadding)
-        slidingTabStrip.setTabText(tabTextSize.toFloat(), tabTextColor)
-        slidingTabStrip.setTabSelectedText(tabSelectedTextSize.toFloat(), selectedTabTextColor)
+        slidingTabStrip.setTabText(tabTextSize, tabTextColor)
+        slidingTabStrip.setTabSelectedText(tabSelectedTextSize, selectedTabTextColor)
         slidingTabStrip.setIndicatorCreep(
             a.getBoolean(R.styleable.SlidingTabLayout_stl_tabIndicatorCreep, false)
         )
@@ -202,7 +199,7 @@ class SlidingTabLayout @JvmOverloads constructor(
             }
             viewPager.addOnPageChangeListener(pageChangeListener!!)
 
-            val  adapter = viewPager.adapter
+            val adapter = viewPager.adapter
             if (adapter != null) {
                 // Now we'll populate ourselves from the pager adapter, adding an observer if
                 // autoRefresh is enabled
@@ -336,19 +333,39 @@ class SlidingTabLayout @JvmOverloads constructor(
         return smoothScroll
     }
 
-    fun setTextColor(@ColorInt color: Int) {
+    fun setTabTextColor(@ColorInt color: Int) {
         tabTextColor = color
-        slidingTabStrip.setTabText(tabTextSize.toFloat(), color)
+        slidingTabStrip.setTabText(tabTextSize, color)
+        slidingTabStrip.invalidate()
+    }
+
+    fun getTabTextSize(): Float {
+        return tabTextSize
+    }
+
+    fun setTabTextSize(size: Float) {
+        tabTextSize = size
+        slidingTabStrip.setTabText(tabTextSize, tabTextColor)
+        slidingTabStrip.invalidate()
+    }
+
+    fun getTabSelectedTextSize(): Float {
+        return tabSelectedTextSize
+    }
+
+    fun setTabSelectedTextSize(size: Float) {
+        tabSelectedTextSize = size
+        slidingTabStrip.setTabSelectedText(tabSelectedTextSize, selectedTabTextColor)
         slidingTabStrip.invalidate()
     }
 
     fun setSelectedTextColor(@ColorInt color: Int) {
         selectedTabTextColor = color
-        slidingTabStrip.setTabSelectedText(tabSelectedTextSize.toFloat(), color)
+        slidingTabStrip.setTabSelectedText(tabSelectedTextSize, color)
     }
 
     fun setSelectedTextColors(@ColorInt vararg colors: Int) {
-        slidingTabStrip.setTabSelectedText(tabSelectedTextSize.toFloat(), *colors)
+        slidingTabStrip.setTabSelectedText(tabSelectedTextSize, *colors)
     }
 
     fun setDividerColors(@ColorInt vararg colors: Int) {
@@ -421,7 +438,7 @@ class SlidingTabLayout @JvmOverloads constructor(
             view.findViewById(R.id.sliding_tab_text)
         }
         text.gravity = Gravity.CENTER_HORIZONTAL or Gravity.CENTER_VERTICAL
-        text.setTextSize(TypedValue.COMPLEX_UNIT_PX, tabTextSize.toFloat())
+        text.setTextSize(TypedValue.COMPLEX_UNIT_PX, tabTextSize)
         text.setTextColor(tabTextColor)
         text.typeface =
             Typeface.create(text.typeface, if (isTabTextBold) Typeface.BOLD else Typeface.NORMAL)
@@ -548,8 +565,8 @@ class SlidingTabLayout @JvmOverloads constructor(
         scrollTo(scrollX.toInt(), 0)
     }
 
-    private fun dpToPx(dps: Int): Int {
-        return (resources.displayMetrics.density * dps).roundToInt()
+    private fun dpToPx(dps: Int): Float {
+        return resources.displayMetrics.density * dps
     }
 
     private inner class TabClickListener constructor(private val mTabLayout: SlidingTabLayout) :
@@ -611,14 +628,14 @@ class SlidingTabLayout @JvmOverloads constructor(
     /**
      * Interface definition for a callback to be invoked when tabs created.
      */
-    interface OnTabCreateListener {
+    fun interface OnTabCreateListener {
         /**
          * Called when tabs created.
          */
         fun onCreated()
     }
 
-    interface OnColorChangeListener {
+    fun interface OnColorChangeListener {
         /**
          * Callback when the color changes.
          *
@@ -630,7 +647,7 @@ class SlidingTabLayout @JvmOverloads constructor(
     /**
      * Interface definition for a callback to be invoked when a tab view is clicked.
      */
-    interface OnTabClickListener {
+    fun interface OnTabClickListener {
         /**
          * Called when a view has been clicked.
          *
@@ -642,7 +659,7 @@ class SlidingTabLayout @JvmOverloads constructor(
     /**
      * Interface definition for a callback to be invoked when a selected tab view is clicked.
      */
-    interface OnSelectedTabClickListener {
+    fun interface OnSelectedTabClickListener {
         /**
          * Called when a view has been clicked.
          *
@@ -654,7 +671,7 @@ class SlidingTabLayout @JvmOverloads constructor(
     /**
      * Interface definition for a callback to be invoked when a selected tab view is clicked.
      */
-    interface OnTabSelectedListener {
+    fun interface OnTabSelectedListener {
         /**
          * This method will be invoked when a new tab becomes selected.
          *
