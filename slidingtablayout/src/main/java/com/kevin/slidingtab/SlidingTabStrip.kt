@@ -22,7 +22,6 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.RectF
-import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import android.util.TypedValue
 import android.view.Gravity
@@ -237,14 +236,14 @@ internal class SlidingTabStrip(context: Context) : LinearLayout(context) {
      * Set the specified position text typeface style.
      *
      * @param index The specified position.
-     * @param style
+     * @param bold  true if the text must be bold, false otherwise.
      */
-    private fun setTabTextTypeface(index: Int, style: Int) {
+    private fun setTabTextBold(index: Int, bold: Boolean) {
         if (index < 0 || index >= childCount) {
             return
         }
         val text = getTextView(index)
-        text.typeface = Typeface.create(text.typeface, style)
+        text.paint.isFakeBoldText = bold
     }
 
     private fun onlySelectedTabBold(): Boolean {
@@ -260,12 +259,12 @@ internal class SlidingTabStrip(context: Context) : LinearLayout(context) {
                 text.setTextColor(tabTextColor)
                 text.setTextSize(TypedValue.COMPLEX_UNIT_PX, titleTextSize)
                 if (onlySelectedTabBold() && lastSelectedPosition != -1) {
-                    setTabTextTypeface(lastSelectedPosition, Typeface.NORMAL)
+                    setTabTextBold(lastSelectedPosition, false)
                 }
                 text.invalidate()
             } else {
                 if (onlySelectedTabBold() && lastSelectedPosition != -1) {
-                    setTabTextTypeface(lastSelectedPosition, Typeface.BOLD)
+                    setTabTextBold(lastSelectedPosition, true)
                 }
             }
         }
@@ -285,12 +284,12 @@ internal class SlidingTabStrip(context: Context) : LinearLayout(context) {
                 text.setTextColor(colors[selectedPosition % colors.size])
                 text.setTextSize(TypedValue.COMPLEX_UNIT_PX, selectedTabTextSize)
                 if (onlySelectedTabBold() && lastSelectedPosition != -1) {
-                    setTabTextTypeface(lastSelectedPosition, Typeface.BOLD)
+                    setTabTextBold(lastSelectedPosition, true)
                 }
                 text.invalidate()
             } else {
                 if (onlySelectedTabBold() && lastSelectedPosition != -1) {
-                    setTabTextTypeface(lastSelectedPosition, Typeface.NORMAL)
+                    setTabTextBold(lastSelectedPosition, false)
                 }
             }
         }
@@ -360,8 +359,8 @@ internal class SlidingTabStrip(context: Context) : LinearLayout(context) {
 
             // Set the selected tab to bold.
             if (onlySelectedTabBold()) {
-                setTabTextTypeface(selectedPosition, Typeface.BOLD)
-                setTabTextTypeface(lastSelectedPosition, Typeface.NORMAL)
+                setTabTextBold(selectedPosition, true)
+                setTabTextBold(lastSelectedPosition, false)
             }
             if (isTabSelected) {
                 setTabTextColor(selectedPosition, tabPalette.getTextColor(selectedPosition))
